@@ -1,0 +1,414 @@
+h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  -webkit-text-decoration-line: none;
+          text-decoration-line: none;
+}
+
+li {
+  list-style: none;
+}
+
+.block-1 {
+  width: 100%;
+  background: #000;
+}
+
+.block-1 .wrapp-content {
+  padding: 35px 0 170px;
+  width: 100%;
+}
+
+.block-1 .top-section {
+  width: 100%;
+  margin-bottom: 50px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.block-1 .mid-section {
+  width: 100%;
+  margin-bottom: 95px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.block-1 h1 {
+  text-align: center;
+  color: #fff;
+  font-family: 'Antic', sans-serif;
+  font-size: 33px;
+  font-weight: 400;
+  margin-bottom: 54px;
+}
+
+.block-1 p {
+  color: white;
+  font-size: 23px;
+  font-weight: 300;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  background: #e1e1e1;
+  transition: all .5s ease-in-out;
+}
+
+header .mbox {
+  max-width: 1265px;
+}
+
+header .menu-wrapp {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 15px 0;
+  margin: 0 10px;
+}
+
+header .menu {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  max-width: 785px;
+  margin-left: -50px;
+}
+
+header .menu li {
+  width: 100%;
+  border-right: solid 2px #fff;
+  text-align: center;
+  padding: 5px 0;
+}
+
+header .menu li:last-child {
+  border: none;
+}
+
+header .menu a {
+  color: #6f6f6f;
+  font-size: 45px;
+  font-weight: 300;
+}
+
+header .logo-wrapp {
+  opacity: 0;
+  visibility: hidden;
+}
+
+header .logo-wrapp a {
+  display: block;
+}
+
+.js-header-fix {
+  background: #000000;
+  border-bottom: solid 1px #e1e1e1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.js-header-fix .logo-wrapp {
+  opacity: 1;
+  visibility: visible;
+}
+
+.content-bock {
+  width: 100%;
+  background: #e1e1e1;
+  padding-top: 50px;
+}
+
+.content-bock .mbox {
+  max-width: 1265px;
+}
+
+.content-bock .head-block {
+  width: 100%;
+  padding-top: 120px;
+  margin-bottom: 120px;
+}
+
+
+.content-bock .logo-wrapp {
+  width: 405px;
+  display: block;
+  margin: 0 auto 60px;
+}
+
+.content-bock .title {
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
+.content-bock .title h2 {
+  font-size: 76px;
+  font-weight: 300;
+  margin-bottom: 6px;
+}
+
+
+.content-bock .title h3 {
+  font-size: 36px;
+  font-weight: 300;
+  margin-bottom: 45px;
+}
+
+.content-bock .title h4 {
+  font-size: 52px;
+  font-weight: 300;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.content-bock .title h5 {
+  font-size: 28px;
+  font-weight: 300;
+  margin-bottom: 45px;
+  color: #fff;
+}
+
+.content-bock .text-wrapp {
+  width: 100%;
+  color: black;
+  padding: 0px 15px;
+}
+
+.content-bock .text-wrapp h2 {
+  padding-top: 80px;
+  text-align: center;
+  font-size: 88px;
+  font-weight: 300;
+  margin-bottom: 35px;
+}
+
+.content-bock .text-wrapp h3 {
+  font-size: 33px;
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 10px;
+  margin-bottom: 80px;
+}
+
+.content-bock .text-wrapp h4 {
+  font-size: 33px;
+  text-align: center;
+  font-weight: 100;
+  letter-spacing: 10px;
+  margin-bottom: 80px;
+}
+
+.content-bock .text-wrapp p {
+  font-size: 25px;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 3px;
+  line-height: 1.3;
+  margin-bottom: 100px;
+}
+
+.content-bock .hinesiaGif {
+  background: #000;
+      width: 100%;
+    height: 100%;
+}
+
+.content-bock .hinessaGif img {
+  display: block;
+  padding-bottom: 250px;
+
+}
+
+.hinessa .hinessaGif{
+    background: #000;
+    
+}
+
+.hinessa{
+    background: #000;
+    }
+
+.utopia {
+    padding-top: 150px;
+        background: #e1e1e1;
+}
+
+.utopia2 {
+    padding-top: 60px;
+    background: #000;
+}
+
+.morgave {
+    background: #e1e1e1;
+
+}
+
+.morgave2 {
+    padding-top: 166px;
+   background: #000;
+   
+
+}
+
+.okey {
+    display:flex;
+    justify-content:center;
+    margin: 0 auto 88px;
+    
+}
+
+.okey2 {
+   
+    justify-content:center;
+    margin-bottom: -1043px;
+    background-size:cover;
+    padding-bottom: 100px;
+
+}
+
+.hinessa p{
+    color: #fff;
+   
+    }
+
+.AUC{
+    background: #000;
+}
+
+.AUC {
+  width: 100%;
+  background: #000;
+  padding: 105px 0 0;
+}
+
+.AUC .mbox {
+  max-width: 1265px;
+}
+
+.AUC .logo-wrapp {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-bottom: 60px;
+}
+
+.AUC .img-wrapp {
+  display: -ms-flexbox;
+  display: flex;
+   -ms-flex-pack: center;
+      justify-content: center;
+}
+
+.block-3 .img-wrapp2 {
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    z-index: 0;
+  }
+
+}
+
+.AUC .img-wrapp img {
+  margin-left: 0px;
+}
+
+.AUC .text-wrapp {
+  width: 100%;
+  color: white;
+}
+
+.utopia2 .text-wrapp {
+  width: 100%;
+  color: white;
+}
+
+
+
+.AUC .text-wrapp p {
+  font-size: 33px;
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.AUC .box {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 95px;
+  width: 100%;
+  background: #e1e1e1;
+  margin-bottom: 100px;
+}
+
+.AUC .box h2 {
+  font-size: 88px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.AUC .auc-section p {
+  color: #757575;
+  letter-spacing: 3px;
+}
+.AUC h3 {
+  color: #757575;
+  letter-spacing: 3px;
+}
+
+.video{
+    padding: 0 ;
+    background: #000;
+       
+}
+
+.block-4 .img-wrapp {
+    width: 100%; 
+    height: 100%; 
+    position: center; 
+    left: 1000px; 
+    top: 1000px; 
+    z-index: 0;
+  }
+
+.footer {
+  height: 295px;
+  width: 100%;
+  background: #000;
+}
+
+.footer .link {
+  text-align: center;
+  padding: 20px 0;
+}
+.footer .social-link{
+     display: flex;
+     justify-content: center;
+}
+
+.footer a {
+  color: #ab9b7e;
+  font-size: 16px;
+  font-weight: 300;
+  }
+
