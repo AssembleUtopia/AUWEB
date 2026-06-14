@@ -1756,5 +1756,75 @@
     "origin": "2a09:2dc2:0:5916::",
     "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 194,
+    "utc": "2026-06-14T15:56:24.595Z",
+    "entropy": "e79ef2de0a3f5dfe0237f64dd8de7f0d",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 195,
+    "utc": "2026-06-14T16:04:15.173Z",
+    "entropy": "6fab677d65acb668bf1c1ed2e6d6a676",
+    "origin": "107.172.195.150",
+    "blueprint": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 196,
+    "utc": "2026-06-14T16:04:32.186Z",
+    "entropy": "4021ba4a8d0af87042e510ecea03be66",
+    "origin": "107.172.195.150",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 197,
+    "utc": "2026-06-14T16:09:08.089Z",
+    "entropy": "334c58c58b24f4b006e859bf50481067",
+    "origin": "66.249.83.37",
+    "blueprint": "Google-Safety",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 198,
+    "utc": "2026-06-14T16:09:08.237Z",
+    "entropy": "5d6a63b70e690dfe6fc414d3be9423d5",
+    "origin": "195.5.52.196",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 199,
+    "utc": "2026-06-14T16:09:14.123Z",
+    "entropy": "637dbfa6de40f1d0034468948ba9e053",
+    "origin": "66.249.91.35",
+    "blueprint": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Google-Safety; +http://www.google.com/bot.html)",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 200,
+    "utc": "2026-06-14T16:09:23.941Z",
+    "entropy": "da850a0b24b06f8324330dddde250ed7",
+    "origin": "91.225.111.36",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
   }
 ]
