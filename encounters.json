@@ -2036,5 +2036,33 @@
     "entity": "HUMAN_OPERATOR",
     "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 220,
+    "utc": "2026-06-14T19:17:38.496Z",
+    "entropy": "e23bc343e75b156e20ad2e5b8adb4042",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 221,
+    "utc": "2026-06-14T19:18:41.642Z",
+    "entropy": "d6023818e7b530883406b95fd2cac35c",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "source": "X/TWITTER",
+    "referrer": "https://t.co/VMKbSLUCTt",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
   }
 ]
