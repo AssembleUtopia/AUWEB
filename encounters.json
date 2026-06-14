@@ -1666,5 +1666,55 @@
     "origin": "46.150.67.215",
     "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "message": "ASSEMBLE"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 185,
+    "utc": "2026-06-14T15:25:21.716Z",
+    "entropy": "87021abe0a55b4c1f07c5f88a523d001",
+    "origin": "178.105.144.53",
+    "blueprint": "HUNT-Bot/0.1 (+https://github.com/hunt-discovery; discovery engine)",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 186,
+    "utc": "2026-06-14T15:30:57.595Z",
+    "entropy": "5fa0bbb9683273d09cda92ff4c978289",
+    "origin": "195.181.161.14",
+    "blueprint": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 187,
+    "utc": "2026-06-14T15:31:09.491Z",
+    "entropy": "c6e38ab4bba09febcc70b15372629a15",
+    "origin": "64.64.98.9",
+    "blueprint": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 188,
+    "utc": "2026-06-14T15:31:09.523Z",
+    "entropy": "7a54fb2c6ec8fd0c8f119dc062b92487",
+    "origin": "173.244.33.15",
+    "blueprint": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 189,
+    "utc": "2026-06-14T15:45:28.490Z",
+    "entropy": "63880a8e160eb99072c546976171b997",
+    "origin": "100.26.1.168",
+    "blueprint": "okhttp/5.3.0",
+    "message": "UTOPIA"
   }
 ]
