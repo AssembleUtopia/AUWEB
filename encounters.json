@@ -1,0 +1,1110 @@
+[
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 1,
+    "utc": "2026-06-14T01:10:00.508Z",
+    "entropy": "038b3e7216edb35ed07997b9f039cc7f",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 2,
+    "utc": "2026-06-14T01:10:03.081Z",
+    "entropy": "edda8ba8b133d999523845a7785e9166",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 3,
+    "utc": "2026-06-14T01:10:04.287Z",
+    "entropy": "338c431206537f3210833e4e0a5881d4",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 4,
+    "utc": "2026-06-14T01:10:05.743Z",
+    "entropy": "11120d69d58f0210e4f8b7a4d7ff8ba1",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 5,
+    "utc": "2026-06-14T01:10:07.307Z",
+    "entropy": "466afb1a7e9ee6f4d58944b2d4404a8e",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 6,
+    "utc": "2026-06-14T01:10:08.494Z",
+    "entropy": "c9e348419dc01d048e98e5e428e5ab0a",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 7,
+    "utc": "2026-06-14T01:10:12.735Z",
+    "entropy": "70b9e56e1f0593edf4c5293c02273adb",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 8,
+    "utc": "2026-06-14T01:10:18.852Z",
+    "entropy": "61e835198806d75e5b66182d32b04299",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 9,
+    "utc": "2026-06-14T01:10:19.154Z",
+    "entropy": "ceff62edbc324717bd59be4a9124e91e",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 10,
+    "utc": "2026-06-14T01:10:19.383Z",
+    "entropy": "a5ce17cd4f657ed8566eb990b1f742df",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 11,
+    "utc": "2026-06-14T01:10:19.602Z",
+    "entropy": "07fa0dbab966548f6d7cfb992acc7518",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 12,
+    "utc": "2026-06-14T01:10:19.849Z",
+    "entropy": "1d7d8b867bcfb9db53871942b6615a2a",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 13,
+    "utc": "2026-06-14T01:10:27.728Z",
+    "entropy": "0449415d5de777e21bf86a532ed5944c",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 14,
+    "utc": "2026-06-14T01:10:41.550Z",
+    "entropy": "ef8ba64e3b5b5706a64e65620587ab00",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 15,
+    "utc": "2026-06-14T01:10:44.436Z",
+    "entropy": "5fea093338f73944158f209cd66cb0ba",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 16,
+    "utc": "2026-06-14T01:10:45.521Z",
+    "entropy": "0354d3e41d4db2617a89f7a34299cede",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 17,
+    "utc": "2026-06-14T01:10:45.755Z",
+    "entropy": "48d9e261ded47a0dd1dce598552c8509",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 18,
+    "utc": "2026-06-14T01:10:45.987Z",
+    "entropy": "d6dce8ed3ad44eb2e2a6b140ddf0c46d",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 19,
+    "utc": "2026-06-14T01:10:46.188Z",
+    "entropy": "0a22e799c03986bf751c92e09e5f4717",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 20,
+    "utc": "2026-06-14T01:10:46.401Z",
+    "entropy": "d75dde63190befa0ca39d0bb517005f1",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 21,
+    "utc": "2026-06-14T01:10:46.601Z",
+    "entropy": "b5db4a4b8b526b069f8aac7394d2c3ba",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 22,
+    "utc": "2026-06-14T01:10:46.773Z",
+    "entropy": "f0f96af3a473ddd2f2b0a40d5a07dfc0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 23,
+    "utc": "2026-06-14T01:10:46.973Z",
+    "entropy": "bbd019869594c25c621bcde452e092d9",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 24,
+    "utc": "2026-06-14T01:10:50.606Z",
+    "entropy": "ab4e5a6ef34aa9a7de494f89e0768b91",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 25,
+    "utc": "2026-06-14T01:11:27.536Z",
+    "entropy": "6342f3aaf548f931b65c9ea3e56a1018",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 26,
+    "utc": "2026-06-14T01:11:27.933Z",
+    "entropy": "300c069af286a82d95a624377c4f32a0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 27,
+    "utc": "2026-06-14T01:11:28.138Z",
+    "entropy": "16da85181f548c69b1492b55ab72abd0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 28,
+    "utc": "2026-06-14T01:11:28.372Z",
+    "entropy": "1643c2ae94a2c87a1eeb7bd7aa97a78f",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 29,
+    "utc": "2026-06-14T01:11:29.030Z",
+    "entropy": "7e0e53fe7db055cfced82a4e912935a7",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 30,
+    "utc": "2026-06-14T01:11:30.345Z",
+    "entropy": "81e5640acb421bc0dce36cb3b0bdd7c0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 31,
+    "utc": "2026-06-14T01:11:30.550Z",
+    "entropy": "a99cd92a11a61540df076698756a1470",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 32,
+    "utc": "2026-06-14T01:11:30.747Z",
+    "entropy": "36674cf9063402383a9332aa87df94e9",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 33,
+    "utc": "2026-06-14T01:11:30.947Z",
+    "entropy": "699b1969d8185ac7796977df853e26ed",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 34,
+    "utc": "2026-06-14T01:11:31.126Z",
+    "entropy": "3ecf47afc5f7600bb5ed34dde76c9574",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 35,
+    "utc": "2026-06-14T01:11:31.329Z",
+    "entropy": "ffb2141e9d840f65652af66107577a17",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 36,
+    "utc": "2026-06-14T01:11:31.563Z",
+    "entropy": "29ef6b25055b65b6d8334458eadd35d0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 37,
+    "utc": "2026-06-14T01:11:31.753Z",
+    "entropy": "44bcf749f48ad0cd26d48eebae307fe6",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 38,
+    "utc": "2026-06-14T01:11:31.973Z",
+    "entropy": "e19c202c810c6ba6b5cf4f1a9cb2bc9a",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 39,
+    "utc": "2026-06-14T01:11:32.175Z",
+    "entropy": "ee4a53507081d058eaf40e1984f707eb",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 40,
+    "utc": "2026-06-14T01:11:32.410Z",
+    "entropy": "708bcd7e220a3e9b709eb58e27b5a20c",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 41,
+    "utc": "2026-06-14T01:11:32.662Z",
+    "entropy": "78345e69840bda07ec0013372d22ec65",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 42,
+    "utc": "2026-06-14T01:11:32.881Z",
+    "entropy": "c085a66817220b38dc8ca6a578eb570e",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 43,
+    "utc": "2026-06-14T01:11:33.103Z",
+    "entropy": "dbbf8bdd96d9bc22146004a270381b9d",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 44,
+    "utc": "2026-06-14T01:11:33.318Z",
+    "entropy": "576bbf430a3bc95fe5eeeeb8fdeddd69",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 45,
+    "utc": "2026-06-14T01:11:33.546Z",
+    "entropy": "0f31c58eabcf091a246955edce5ae6a5",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 46,
+    "utc": "2026-06-14T01:11:33.799Z",
+    "entropy": "36c1c2c0ff8072aa61dbeecd8188d54d",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 47,
+    "utc": "2026-06-14T01:11:34.049Z",
+    "entropy": "ae0447816799bcb29b864973d1d7b022",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 48,
+    "utc": "2026-06-14T01:11:34.369Z",
+    "entropy": "afa903944464d7556ee73376ece60214",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 49,
+    "utc": "2026-06-14T01:11:34.598Z",
+    "entropy": "72a359cb4ada5be792684697f7509977",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 50,
+    "utc": "2026-06-14T01:11:35.017Z",
+    "entropy": "39e70376539ce46f8c9abf1d30efc887",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 51,
+    "utc": "2026-06-14T01:11:35.953Z",
+    "entropy": "f96902b79e73c22c801a16c35c053092",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 52,
+    "utc": "2026-06-14T01:11:36.336Z",
+    "entropy": "b95cb6ff70b845b9a5405ea63f89405a",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 53,
+    "utc": "2026-06-14T01:11:36.701Z",
+    "entropy": "381ee39fea712ff33bfb89b3bfadfd5b",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 54,
+    "utc": "2026-06-14T01:11:37.414Z",
+    "entropy": "bd4291fd0c2a471c2085325b096a4570",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 55,
+    "utc": "2026-06-14T01:11:37.814Z",
+    "entropy": "96a3018fbdde205438dd123c8baca866",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 56,
+    "utc": "2026-06-14T01:11:38.165Z",
+    "entropy": "abbf95ff649a058fd068c794339ed336",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 57,
+    "utc": "2026-06-14T01:11:38.447Z",
+    "entropy": "5f682b2ffb499951ddd29429d285347e",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 58,
+    "utc": "2026-06-14T01:11:38.930Z",
+    "entropy": "de60ee3beb5086017f43dc90b8c66e3a",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 59,
+    "utc": "2026-06-14T01:11:39.480Z",
+    "entropy": "f08cad09a20baf95056f3111ae0dc4af",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 60,
+    "utc": "2026-06-14T01:11:39.695Z",
+    "entropy": "84a51fe818d9be5495b8617ceb4db23c",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 61,
+    "utc": "2026-06-14T01:11:39.973Z",
+    "entropy": "5fc52a2db0e91923aba5aa997a0df5c9",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 62,
+    "utc": "2026-06-14T01:11:40.226Z",
+    "entropy": "a24d49eaf825e9d94889ec79962af7ba",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 63,
+    "utc": "2026-06-14T01:11:40.530Z",
+    "entropy": "18ad1659825e08d54561d0b8de07f07a",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 64,
+    "utc": "2026-06-14T01:11:40.829Z",
+    "entropy": "f6e9ebe0013dcddbad5042233a51cb43",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 65,
+    "utc": "2026-06-14T01:11:41.163Z",
+    "entropy": "bec789376d74ee55427637f585817346",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 66,
+    "utc": "2026-06-14T01:11:41.486Z",
+    "entropy": "6fe5735608fa9ee41a8d3c11b41aa5c9",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 67,
+    "utc": "2026-06-14T01:11:41.813Z",
+    "entropy": "dcadf5388bf2f149ddc6156113940b11",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 68,
+    "utc": "2026-06-14T01:12:34.978Z",
+    "entropy": "58c9286db7f6b449c7ab6cc5167b3629",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 69,
+    "utc": "2026-06-14T01:12:35.794Z",
+    "entropy": "8cf4489a72de0fb47fb1320be8a5566d",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 70,
+    "utc": "2026-06-14T01:12:36.551Z",
+    "entropy": "2142ad1c89d91a3ccadcfc6f0317b0c9",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 71,
+    "utc": "2026-06-14T01:12:37.385Z",
+    "entropy": "1676cdeced8ac7e04086fe1f8f889a66",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 72,
+    "utc": "2026-06-14T01:12:37.597Z",
+    "entropy": "e1a1ef1d328fe26ccada398f1da8cfbb",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 73,
+    "utc": "2026-06-14T01:12:37.803Z",
+    "entropy": "313700830b19dcb259017894f1782196",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 74,
+    "utc": "2026-06-14T01:12:38.015Z",
+    "entropy": "3301ce3cf6bb5a0c1bdbdcff33e911cc",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 75,
+    "utc": "2026-06-14T01:12:38.225Z",
+    "entropy": "d899acb8f16ec293df2667e913b18174",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 76,
+    "utc": "2026-06-14T01:12:39.260Z",
+    "entropy": "85d1e288e33c58060508f37674a44928",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 77,
+    "utc": "2026-06-14T01:12:40.213Z",
+    "entropy": "9bdf3fc5e701095e762ea521cd3fcdf3",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 78,
+    "utc": "2026-06-14T01:16:55.870Z",
+    "entropy": "2a9b62150d4749039fbc5ae8bbb6d282",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 79,
+    "utc": "2026-06-14T01:17:28.111Z",
+    "entropy": "7824187c23e8d57224b3aaf6f0593d5b",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 80,
+    "utc": "2026-06-14T01:24:10.229Z",
+    "entropy": "0cb97984ddcb3adf9c8de83fe4e71107",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 81,
+    "utc": "2026-06-14T01:33:09.201Z",
+    "entropy": "3c3fce1cdaf3b9d71c5e8fa719100376",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 82,
+    "utc": "2026-06-14T01:33:10.856Z",
+    "entropy": "414b12f358e41b6bc48e43bcd46c322d",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 83,
+    "utc": "2026-06-14T01:35:53.103Z",
+    "entropy": "2a5b79986ebeb45fc193597cc466c620",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 84,
+    "utc": "2026-06-14T01:35:57.377Z",
+    "entropy": "16e7f877568ad40e569e9d605175ae4c",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 85,
+    "utc": "2026-06-14T01:35:59.072Z",
+    "entropy": "9313963206245a1dd1c826b4b18317fa",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 86,
+    "utc": "2026-06-14T01:35:59.946Z",
+    "entropy": "7ae42c6c5176e87b7107cc37d757d92e",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 87,
+    "utc": "2026-06-14T01:36:42.026Z",
+    "entropy": "22d93456559f4c7bbf88b89dc5d1be4f",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 88,
+    "utc": "2026-06-14T01:36:48.456Z",
+    "entropy": "121f8348c434f7a1c3112a019535eed2",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 89,
+    "utc": "2026-06-14T01:36:50.701Z",
+    "entropy": "712cdd9af060be897ede9da9c122aa10",
+    "origin": "46.150.67.215",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 90,
+    "utc": "2026-06-14T01:39:20.808Z",
+    "entropy": "bae9a7e46baf4324d81087a4d082915d",
+    "origin": "141.105.139.167",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 91,
+    "utc": "2026-06-14T01:40:00.556Z",
+    "entropy": "9aa4c901a40abd91542a5c010f557e53",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 92,
+    "utc": "2026-06-14T01:40:05.653Z",
+    "entropy": "c0079410fbfca1a544e9e674084595bd",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 93,
+    "utc": "2026-06-14T01:40:57.168Z",
+    "entropy": "36ed6f036779cef19190b9371cb1081b",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 94,
+    "utc": "2026-06-14T01:41:01.986Z",
+    "entropy": "4a6261599a917d2089d3996101e3c86d",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 95,
+    "utc": "2026-06-14T01:41:15.954Z",
+    "entropy": "794c1872e569ce0d124bd9a3208b7897",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 96,
+    "utc": "2026-06-14T01:41:16.871Z",
+    "entropy": "14a1c0f35eae585d0fb54ad5182f7ccd",
+    "origin": "141.105.139.167",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 97,
+    "utc": "2026-06-14T01:41:18.773Z",
+    "entropy": "9b6662e07528ce559168436b0bc43600",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 98,
+    "utc": "2026-06-14T01:41:20.119Z",
+    "entropy": "4945e5924b1e449e2964350be2428c76",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 99,
+    "utc": "2026-06-14T01:41:21.050Z",
+    "entropy": "8cb4f2151732dd2cc137d65a30fc98ae",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 100,
+    "utc": "2026-06-14T01:41:22.005Z",
+    "entropy": "4baa785cf1b82193486de010b1bea616",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 101,
+    "utc": "2026-06-14T01:41:22.857Z",
+    "entropy": "daf94f4ef8b6d2288ee84593770d26f8",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 102,
+    "utc": "2026-06-14T01:41:27.103Z",
+    "entropy": "05a2faa89485568bc59c9086bba51811",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 103,
+    "utc": "2026-06-14T01:41:30.262Z",
+    "entropy": "7597aec8b82de44b58bc26d403f82a23",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 104,
+    "utc": "2026-06-14T01:42:20.445Z",
+    "entropy": "eff45c3baf8982960cd91051a5cd58ad",
+    "origin": "93.152.92.254",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Safari/605.1.15",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 105,
+    "utc": "2026-06-14T01:42:20.557Z",
+    "entropy": "53e85f8e2e5536457d9c30e0cf0b1998",
+    "origin": "85.254.174.91",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 106,
+    "utc": "2026-06-14T01:42:20.611Z",
+    "entropy": "08392cf66c2cc40de8bbec314999aac2",
+    "origin": "198.232.2.6",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Safari/605.1.15",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 107,
+    "utc": "2026-06-14T01:42:20.693Z",
+    "entropy": "ce6b8152968fdf91ab31c057cf299826",
+    "origin": "170.23.6.109",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 108,
+    "utc": "2026-06-14T01:42:20.887Z",
+    "entropy": "83064e2187453748a91c974dd9f2017b",
+    "origin": "138.226.104.5",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Safari/605.1.15",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 109,
+    "utc": "2026-06-14T01:42:21.111Z",
+    "entropy": "5d9045284e1e0cc2c4fb8fadd6011bd0",
+    "origin": "179.125.244.233",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Safari/605.1.15",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 110,
+    "utc": "2026-06-14T01:42:21.282Z",
+    "entropy": "a6183239623878a3ae3552fa3c80be65",
+    "origin": "179.189.82.236",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.2 Safari/605.1.15",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 111,
+    "utc": "2026-06-14T01:42:26.014Z",
+    "entropy": "09b293f205e87c8d5099848c4f001c5b",
+    "origin": "66.249.69.71",
+    "blueprint": "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 112,
+    "utc": "2026-06-14T01:42:28.205Z",
+    "entropy": "98e8f988b099eb1b2f6db8995f694fe9",
+    "origin": "66.249.69.65",
+    "blueprint": "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 113,
+    "utc": "2026-06-14T01:46:53.699Z",
+    "entropy": "6dfcaf3ffefa8468a85ce599e221eb8a",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 114,
+    "utc": "2026-06-14T01:47:58.038Z",
+    "entropy": "21a83f6370e1d367da0a71a96bd436e3",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 115,
+    "utc": "2026-06-14T01:50:20.371Z",
+    "entropy": "69d39c482f27994a5f36f040fd15e59e",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 116,
+    "utc": "2026-06-14T01:50:22.891Z",
+    "entropy": "43f87d349ab7ce8255b203b1d579ca08",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 117,
+    "utc": "2026-06-14T01:50:41.285Z",
+    "entropy": "d7b0f8ebdea6ebf7022a7c662605c150",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 118,
+    "utc": "2026-06-14T01:50:53.770Z",
+    "entropy": "a8ebeba0d57625a41ca8ef27a89853fa",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 119,
+    "utc": "2026-06-14T01:51:01.318Z",
+    "entropy": "e5fc60d2a41de44a271e4b97809e7838",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 120,
+    "utc": "2026-06-14T01:51:08.737Z",
+    "entropy": "b4620eb0c3d8038d9fd125428009ee8a",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 121,
+    "utc": "2026-06-14T01:51:13.631Z",
+    "entropy": "691b62df47983fa6bc93a8d3e440afed",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 122,
+    "utc": "2026-06-14T01:51:17.713Z",
+    "entropy": "610de13159d5deb64a8db6618f6b7c5c",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 123,
+    "utc": "2026-06-14T01:54:54.266Z",
+    "entropy": "a2497a81577ececa3d8bf6b7a847d6f0",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 124,
+    "utc": "2026-06-14T01:56:22.647Z",
+    "entropy": "72cf29be8ae9e75a4522ed4bffd540aa",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 125,
+    "utc": "2026-06-14T01:56:26.722Z",
+    "entropy": "577fa8594a84a1a4b72d05754eb3523b",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 126,
+    "utc": "2026-06-14T01:56:27.488Z",
+    "entropy": "4cf92077a7c47f238fd0adbc4858e357",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 127,
+    "utc": "2026-06-14T01:56:28.281Z",
+    "entropy": "e34cefa3da72ef558cf0be1842e432fa",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 128,
+    "utc": "2026-06-14T02:09:05.864Z",
+    "entropy": "5578986e8b8d6620f85f2fa24f6d93e7",
+    "origin": "195.164.49.144",
+    "blueprint": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
+    "message": "SIGNAL PERSISTS"
+  }
+]
