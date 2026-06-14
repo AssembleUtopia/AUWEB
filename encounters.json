@@ -1106,5 +1106,465 @@
     "origin": "195.164.49.144",
     "blueprint": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 129,
+    "utc": "2026-06-14T02:59:45.515Z",
+    "entropy": "752ad93e0277967a89bb3432a65fcb2e",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 130,
+    "utc": "2026-06-14T03:06:10.409Z",
+    "entropy": "141ec093c2c29435a85b9787f5b1d002",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 131,
+    "utc": "2026-06-14T03:06:12.276Z",
+    "entropy": "64330d37eb235c8059fff08dbb5f6568",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 132,
+    "utc": "2026-06-14T03:08:00.750Z",
+    "entropy": "f06f1aaab2b729a40b0b069626d12206",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 133,
+    "utc": "2026-06-14T14:18:08.431Z",
+    "entropy": "097e160a8dfa48ecc47ee358c02063b2",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 134,
+    "utc": "2026-06-14T14:22:51.555Z",
+    "entropy": "94fb346dc08eee565df081726c457f24",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 135,
+    "utc": "2026-06-14T14:27:59.587Z",
+    "entropy": "16ecd5491d41e0e4020b14ee6c5af281",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 136,
+    "utc": "2026-06-14T14:30:12.337Z",
+    "entropy": "8ab8897ee3f0061dafbede56f65c341a",
+    "origin": "2a09:bac6:5958:52d::84:ae",
+    "blueprint": "Python/3.10 aiohttp/3.11.11",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 137,
+    "utc": "2026-06-14T14:30:57.437Z",
+    "entropy": "a159cfefd80822a2476738afcafadba1",
+    "origin": "2a14:7c1:498a::1",
+    "blueprint": "Mozilla/5.0 (compatible; CT-WP-Scanner/1.0; +https://example.com/bot)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 138,
+    "utc": "2026-06-14T14:31:02.914Z",
+    "entropy": "540149673caa999a7a05fa82cf15bfe5",
+    "origin": "51.81.245.138",
+    "blueprint": "greedyhand/0.1",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 139,
+    "utc": "2026-06-14T14:31:09.791Z",
+    "entropy": "fae7e82941c9537776354727dc53d173",
+    "origin": "103.196.9.42",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 140,
+    "utc": "2026-06-14T14:31:09.867Z",
+    "entropy": "6e972e8bd8b7b97178f717a619c6383c",
+    "origin": "103.4.251.123",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 141,
+    "utc": "2026-06-14T14:31:13.751Z",
+    "entropy": "e46fb257e49691ae6cfeb4e43a20703b",
+    "origin": "103.196.9.42",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 142,
+    "utc": "2026-06-14T14:31:21.647Z",
+    "entropy": "cf8489bf4df38923a83e33514c973513",
+    "origin": "103.4.251.16",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 143,
+    "utc": "2026-06-14T14:31:22.397Z",
+    "entropy": "c1aee111eca67057054cd3a1bb17da9a",
+    "origin": "91.92.241.197",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 144,
+    "utc": "2026-06-14T14:31:25.127Z",
+    "entropy": "237e30a2c38ec4bdf850e5ddc8168366",
+    "origin": "107.172.195.2",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 145,
+    "utc": "2026-06-14T14:31:25.869Z",
+    "entropy": "dda1ddf5aa25707e4babf93ca9317fc3",
+    "origin": "54.89.248.195",
+    "blueprint": "Mozilla/5.0 (Linux; Android 16; SM-S921U) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Mobile Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 146,
+    "utc": "2026-06-14T14:31:27.976Z",
+    "entropy": "882b135e99c2d723e702bc2bbc75f0d9",
+    "origin": "100.59.32.71",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 147,
+    "utc": "2026-06-14T14:31:29.078Z",
+    "entropy": "17c6d1881a2afbe09da9da32ffdc0f9f",
+    "origin": "107.172.195.2",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 148,
+    "utc": "2026-06-14T14:31:31.025Z",
+    "entropy": "43a009ab24062f508e0dbc92cca29f60",
+    "origin": "192.175.111.251",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 149,
+    "utc": "2026-06-14T14:31:46.972Z",
+    "entropy": "91bdccbb4fc7a3d01f323f20ee97ae62",
+    "origin": "206.189.19.19",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 150,
+    "utc": "2026-06-14T14:31:46.982Z",
+    "entropy": "0e74f13da749a7bed8e611c729bda54c",
+    "origin": "2a03:b0c0:3:d0::11fa:8001",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.233643a353138363a3a343330333a303037343a363036323; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 151,
+    "utc": "2026-06-14T14:31:47.021Z",
+    "entropy": "3abbdd8324e016ac84b59f9a07b8abfc",
+    "origin": "2a03:b0c0:3:d0::1047:b001",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.56231693a333433616a3a363330333a303037343a363036323; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 152,
+    "utc": "2026-06-14T14:31:47.025Z",
+    "entropy": "115bec464cd43a3a8deba67b2c8cd9f5",
+    "origin": "64.227.32.66",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 153,
+    "utc": "2026-06-14T14:31:47.029Z",
+    "entropy": "80234a9f5e787baf33ac185b6c1fb07c",
+    "origin": "2a03:b0c0:3:d0::12bc:e001",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.233643a353138363a3a343330333a303037343a363036323; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 154,
+    "utc": "2026-06-14T14:31:47.042Z",
+    "entropy": "6ddef42ac3186fd7c8ec7f5853faa733",
+    "origin": "2a03:b0c0:2:d0::176f:2001",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.56231693a333433616a3a363330333a303037343a363036323; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 155,
+    "utc": "2026-06-14T14:31:47.045Z",
+    "entropy": "3248c6e2bca26ff2d0166627145e2cfc",
+    "origin": "157.245.36.108",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 156,
+    "utc": "2026-06-14T14:31:47.161Z",
+    "entropy": "cd6ba8ba7ddc27b1c68a237b7331d841",
+    "origin": "142.93.129.190",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 157,
+    "utc": "2026-06-14T14:31:47.237Z",
+    "entropy": "1e316a66062d5bc05d4ad7e3f08458e9",
+    "origin": "167.172.158.128",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 158,
+    "utc": "2026-06-14T14:31:47.386Z",
+    "entropy": "4f2b6adde1da5b5bdb15188e9046942d",
+    "origin": "2604:a880:4:1d0::36c:6000",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.233643a353138363a3a343330333a303037343a363036323; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 159,
+    "utc": "2026-06-14T14:31:47.398Z",
+    "entropy": "6b12b4adb3639a4e8d035851d4d82269",
+    "origin": "2604:a880:4:1d0::3d7:5000",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.56231693a333433616a3a363330333a303037343a363036323; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 160,
+    "utc": "2026-06-14T14:31:47.409Z",
+    "entropy": "a58be269d00a2240582b5efd6c6b375c",
+    "origin": "68.183.180.73",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 161,
+    "utc": "2026-06-14T14:31:48.205Z",
+    "entropy": "3770eb67bafd224988fed35d03c85c5b",
+    "origin": "37.19.221.175",
+    "blueprint": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 162,
+    "utc": "2026-06-14T14:31:53.917Z",
+    "entropy": "175ce983c777d0ed051f4bd64fa7b353",
+    "origin": "206.189.19.19",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 163,
+    "utc": "2026-06-14T14:31:53.960Z",
+    "entropy": "290f73ee5dadf12b5c148e38f5a72ef2",
+    "origin": "157.245.36.108",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 164,
+    "utc": "2026-06-14T14:31:54.013Z",
+    "entropy": "c9717dd8081d1424f1cb2bc7fe3a748c",
+    "origin": "64.227.32.66",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 165,
+    "utc": "2026-06-14T14:31:54.101Z",
+    "entropy": "a1209bf800d5ca326c907d4061ebcfc9",
+    "origin": "142.93.129.190",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 166,
+    "utc": "2026-06-14T14:31:54.371Z",
+    "entropy": "d82e6400d2c8ef8f230ab7dee9926f23",
+    "origin": "167.172.158.128",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 167,
+    "utc": "2026-06-14T14:31:55.009Z",
+    "entropy": "aab5df103893c3bc731ced9f8d6ceaae",
+    "origin": "68.183.180.73",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 168,
+    "utc": "2026-06-14T14:32:12.238Z",
+    "entropy": "d1e6800d2fd9c1044207a62d4f1ac0e1",
+    "origin": "206.189.19.19",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 169,
+    "utc": "2026-06-14T14:32:12.296Z",
+    "entropy": "e016aa58adc9f57668935eca73e0f667",
+    "origin": "142.93.129.190",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 170,
+    "utc": "2026-06-14T14:32:12.409Z",
+    "entropy": "ecfd40f7f05f61772817fb5faf36bcfe",
+    "origin": "157.245.36.108",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.439313e243e21323e2430313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 171,
+    "utc": "2026-06-14T14:32:13.175Z",
+    "entropy": "2511d8dcbb5f42d105969092b8f7c72b",
+    "origin": "64.227.32.66",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 172,
+    "utc": "2026-06-14T14:32:13.306Z",
+    "entropy": "f0f43e3a8be9387169386a6d85453266",
+    "origin": "167.172.158.128",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 173,
+    "utc": "2026-06-14T14:32:17.265Z",
+    "entropy": "8d8e4af74d28968d48f6a93c9bfb8ae4",
+    "origin": "68.183.180.73",
+    "blueprint": "Mozilla/5.0 (l9scan/2.0.6343e2435313e27363e2237313; +https://leakix.net)",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 174,
+    "utc": "2026-06-14T14:32:48.150Z",
+    "entropy": "35b9ef4d6074ca36a4fb28fa2227c3d6",
+    "origin": "91.92.241.197",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
   }
 ]
