@@ -1916,5 +1916,55 @@
     "origin": "85.208.96.201",
     "blueprint": "Mozilla/5.0 (compatible; SemrushBot/7~bl; +http://www.semrush.com/bot.html)",
     "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 210,
+    "utc": "2026-06-14T18:33:37.325Z",
+    "entropy": "e4ef213773da5d78f8cfe0d6532e3a0d",
+    "origin": "2a03:2880:7ff:59::",
+    "blueprint": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 211,
+    "utc": "2026-06-14T18:33:37.756Z",
+    "entropy": "1aff4d102d61ee4e76d641fbcaf6504b",
+    "origin": "2a03:2880:9ff:74::",
+    "blueprint": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 212,
+    "utc": "2026-06-14T18:33:38.786Z",
+    "entropy": "2a1b73a909e5d2d552633272660e7ae6",
+    "origin": "2a03:2880:11ff:6::",
+    "blueprint": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Mobile/15E148 Safari/604.1",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 213,
+    "utc": "2026-06-14T18:34:12.393Z",
+    "entropy": "131fd546aacd5d034d735194f3d24f72",
+    "origin": "2a03:2880:15ff:5d::",
+    "blueprint": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 214,
+    "utc": "2026-06-14T18:34:14.565Z",
+    "entropy": "3866c7430cc034c7742956eb14e64f1f",
+    "origin": "2a03:2880:7ff:5c::",
+    "blueprint": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
+    "message": "UTOPIA"
   }
 ]
