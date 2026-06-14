@@ -1966,5 +1966,47 @@
     "origin": "2a03:2880:7ff:5c::",
     "blueprint": "facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)",
     "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 215,
+    "utc": "2026-06-14T18:58:28.365Z",
+    "entropy": "faf6c6510afe953bdc2db74f55b69d16",
+    "origin": "45.66.35.20",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "MOBILE_RELAY",
+    "detection": "MOBILE RELAY DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 216,
+    "utc": "2026-06-14T18:58:54.370Z",
+    "entropy": "1217eebfad5f305d80495c7fb8f087a6",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 217,
+    "utc": "2026-06-14T18:59:29.726Z",
+    "entropy": "4e22a303ec180c5bd8d8181d595901cf",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
   }
 ]
