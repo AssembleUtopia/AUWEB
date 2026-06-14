@@ -1826,5 +1826,95 @@
     "origin": "91.225.111.36",
     "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
     "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 201,
+    "utc": "2026-06-14T16:17:23.328Z",
+    "entropy": "4ebdac82e71b52ded5256a1449ff55a5",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 202,
+    "utc": "2026-06-14T16:52:39.114Z",
+    "entropy": "33f7d0235d221e34902aabe66b51fdcf",
+    "origin": "104.28.156.59",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 203,
+    "utc": "2026-06-14T17:15:15.646Z",
+    "entropy": "d0bde059b85257dcdeb6f0544a7b5785",
+    "origin": "49.181.139.88",
+    "blueprint": "Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.1585.1293 Mobile Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 204,
+    "utc": "2026-06-14T17:34:16.967Z",
+    "entropy": "97b845c7e3bb31032be3310beaded568",
+    "origin": "195.164.49.144",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 205,
+    "utc": "2026-06-14T17:42:55.368Z",
+    "entropy": "7f8b56b6f6c8dd787c505f8416e728a4",
+    "origin": "43.134.187.251",
+    "blueprint": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 206,
+    "utc": "2026-06-14T18:04:18.201Z",
+    "entropy": "52d93ce24e2a835fb7fd5fab9d67b9a2",
+    "origin": "45.92.86.186",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 207,
+    "utc": "2026-06-14T18:04:18.762Z",
+    "entropy": "c50800718e46c861c6acd0392518927e",
+    "origin": "45.92.84.4",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 208,
+    "utc": "2026-06-14T18:05:49.220Z",
+    "entropy": "ad61f5ddc3bf21be5f6fed39269541b6",
+    "origin": "2001:470:1:b95::6876",
+    "blueprint": "Mozilla/5.0 (compatible; ev-crawler/1.0; +https://headline.com/legal/crawler)",
+    "message": "UTOPIA"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 209,
+    "utc": "2026-06-14T18:06:21.448Z",
+    "entropy": "8195f61dcb439cf7ea70a8f57683f425",
+    "origin": "85.208.96.201",
+    "blueprint": "Mozilla/5.0 (compatible; SemrushBot/7~bl; +http://www.semrush.com/bot.html)",
+    "message": "UTOPIA"
   }
 ]
