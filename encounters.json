@@ -1626,5 +1626,45 @@
     "origin": "54.247.57.72",
     "blueprint": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 181,
+    "utc": "2026-06-14T14:51:43.931Z",
+    "entropy": "391c2e137fc29c0564db441837bdd3f9",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 182,
+    "utc": "2026-06-14T14:57:41.093Z",
+    "entropy": "fa11e062315e15c3757900f82f6d125d",
+    "origin": "91.231.89.19",
+    "blueprint": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 183,
+    "utc": "2026-06-14T14:58:28.231Z",
+    "entropy": "966cb25ee6a7d139810c61d04261b6ab",
+    "origin": "91.231.89.101",
+    "blueprint": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 184,
+    "utc": "2026-06-14T15:12:36.573Z",
+    "entropy": "cda6ab0a41010a8ad8be3ec76a358fac",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "message": "ASSEMBLE"
   }
 ]
