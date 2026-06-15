@@ -2834,5 +2834,33 @@
     "entity": "FACEBOOK_PREVIEW_ENTITY",
     "detection": "FACEBOOK PREVIEW ENTITY DETECTED",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 277,
+    "utc": "2026-06-15T14:24:04.381Z",
+    "entropy": "83612df6779abfe200d81850df5a8eda",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; EML-L29 Build/HUAWEIEML-L29; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/149.0.7827.87 Mobile Safari/537.36 Instagram 433.0.0.47.68 Android (29/10; 480dpi; 1080x2244; HUAWEI; EML-L29; HWEML; kirin970; en_UA; 990700936; IABMV/1)",
+    "source": "INSTAGRAM",
+    "referrer": "https://l.instagram.com/",
+    "entity": "MOBILE_RELAY",
+    "detection": "MOBILE RELAY DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 278,
+    "utc": "2026-06-15T14:24:53.490Z",
+    "entropy": "545b1e766607fb3789e54ed8b87daaa6",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
   }
 ]
