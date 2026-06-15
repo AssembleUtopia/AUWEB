@@ -4222,6 +4222,85 @@
       "x-forwarded-proto": "https"
     },
     "browser_probe": {
+      "status": "ENCOUNTER_COMPLETED",
+      "last_event": "departure",
+      "timezone": "Europe/Kiev",
+      "screen": "1920x1080",
+      "viewport": "1920x993",
+      "pixel_ratio": 1,
+      "theme": "light",
+      "cores": 12,
+      "memory_gb": 32,
+      "touch_points": 0,
+      "network_type": "4g",
+      "save_data": false,
+      "dwell_seconds": 702,
+      "received_utc": "2026-06-15T17:14:56.880Z"
+    },
+    "disclosure": "HIGH",
+    "message": "SIGNAL PERSISTS",
+    "updated_utc": "2026-06-15T17:14:56.881Z"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 314,
+    "utc": "2026-06-15T17:15:01.494Z",
+    "entropy": "dc0d17cbd2eab13c722de944e6cb3ecb",
+    "origin": "46.150.67.215",
+    "hostname": "UNKNOWN",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "terminal": {
+      "os": "Windows NT 10.0",
+      "browser": "Chrome",
+      "browser_version": "149.0.0.0",
+      "device": "UNKNOWN",
+      "app": "UNKNOWN",
+      "app_version": "UNKNOWN"
+    },
+    "source": "EXTERNAL",
+    "referrer": "https://assembleutopia.com/",
+    "language": "en-US,en;q=0.9,ru-UA;q=0.8,ru;q=0.7",
+    "client_hints": {
+      "ua": "\"Google Chrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"",
+      "platform": "\"Windows\"",
+      "mobile": "?0",
+      "model": "UNKNOWN"
+    },
+    "terminal_entropy": "bd177a65ae7ef2f544890e31",
+    "returning_entity": true,
+    "previous_terminal_encounters": 11,
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "headers": {
+      "host": "assembleutopia.com",
+      "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+      "content-length": "224",
+      "accept": "*/*",
+      "accept-encoding": "gzip, br",
+      "accept-language": "en-US,en;q=0.9,ru-UA;q=0.8,ru;q=0.7",
+      "cdn-loop": "cloudflare; loops=1",
+      "cf-connecting-ip": "46.150.67.215",
+      "cf-ipcountry": "UA",
+      "cf-ray": "a0c33d411f2ec226-VIE",
+      "cf-visitor": "{\"scheme\":\"https\"}",
+      "cf-warp-tag-id": "6eb7026d-f073-47fa-8ffb-1f41da0a3566",
+      "connection": "keep-alive",
+      "content-type": "application/json",
+      "cookie": "cf_clearance=mpCMsVSX.Cavp11fAoVbUX5T2919pXAg5Skd.epL68o-1781542535-1.2.1.1-NuXB0bNPkDikK7OtBsrWvxuK4KTkEEQAtKdSyMURVHEUnrUUdthtSs2fwLk.VZhrf7mjVJsV4RQOewBajtzC9TeeI2epn6lbJ16LvKhwqWc5ippVzybvvnSOafKO8n20O4xhQaOsCziXEP1EAUtPRQZXPGOuZcnzJuGFfMib5DbJ_Qf99LxkD_IBleqEZc_xwyDdDtSGvGKqSGK3Jko6Hb5zCrZNQnG_bIGDyUjXd31j640PipMnsjxbIrwPzHVhtl206P31m3jMGeuutlAW7r3SYLsyIzUbr0AN.QPNMUvl8.J5qpNZpTGRL6QxMVClUF1th7lC9YtwiHMM3j9Udg",
+      "origin": "https://assembleutopia.com",
+      "priority": "u=1, i",
+      "referer": "https://assembleutopia.com/",
+      "sec-ch-ua": "\"Google Chrome\";v=\"149\", \"Chromium\";v=\"149\", \"Not)A;Brand\";v=\"24\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      "x-forwarded-for": "46.150.67.215",
+      "x-forwarded-proto": "https"
+    },
+    "browser_probe": {
       "status": "BROWSER_SIGNAL_RECEIVED",
       "last_event": "arrival",
       "timezone": "Europe/Kiev",
@@ -4235,10 +4314,10 @@
       "network_type": "4g",
       "save_data": false,
       "dwell_seconds": 0,
-      "received_utc": "2026-06-15T17:03:14.419Z"
+      "received_utc": "2026-06-15T17:15:01.672Z"
     },
     "disclosure": "HIGH",
     "message": "SIGNAL PERSISTS",
-    "updated_utc": "2026-06-15T17:03:14.421Z"
+    "updated_utc": "2026-06-15T17:15:01.673Z"
   }
 ]
