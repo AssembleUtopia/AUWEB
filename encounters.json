@@ -2498,5 +2498,61 @@
     "entity": "HUMAN_OPERATOR",
     "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 253,
+    "utc": "2026-06-15T11:36:26.983Z",
+    "entropy": "5f1f3aba1e91cbd4de6b226ecac6efa3",
+    "origin": "85.208.96.196",
+    "blueprint": "Mozilla/5.0 (compatible; SemrushBot/7~bl; +http://www.semrush.com/bot.html)",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "SEMRUSHBOT",
+    "detection": "UNCLASSIFIED ENTITY DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 254,
+    "utc": "2026-06-15T12:24:13.266Z",
+    "entropy": "aa2dde76b307edfd483162e20fdceeed",
+    "origin": "34.122.147.229",
+    "blueprint": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 255,
+    "utc": "2026-06-15T12:30:10.037Z",
+    "entropy": "00ce0aacb3c393cfe8b45d5a742ef57c",
+    "origin": "107.189.30.86",
+    "blueprint": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/30.0 Chrome/143.0.0.0 Mobile Safari/537.36",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "MOBILE_RELAY",
+    "detection": "MOBILE RELAY DETECTED",
+    "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 256,
+    "utc": "2026-06-15T12:52:01.274Z",
+    "entropy": "7ccd5727521da64b31f603fc5eb42e19",
+    "origin": "35.233.105.235",
+    "blueprint": "Mozilla/5.0 (compatible; CMS-Checker/1.0; +https://example.com)",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
   }
 ]
