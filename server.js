@@ -1,12 +1,16 @@
 const express = require("express");
 const crypto = require("crypto");
 const fs = require("fs");
+const dns = require("dns").promises;
+const net = require("net");
 
 const app = express();
 const PORT = 8080;
 const ARCHIVE_FILE = "encounters.json";
 
 let currentBroadcast = "SIGNAL PERSISTS";
+
+app.use(express.json({ limit: "64kb" }));
 
 // ---------- TERMINAL CONTROL ----------
 
@@ -72,8 +76,130 @@ function loadArchive() {
     }
 }
 
+function normalizeIP(ip) {
+    if (!ip) return "UNKNOWN";
+
+    let value = String(ip).trim();
+
+    if (value.includes(",")) {
+        value = value.split(",")[0].trim();
+    }
+
+    if (value.startsWith("::ffff:")) {
+        value = value.replace("::ffff:", "");
+    }
+
+    return value || "UNKNOWN";
+}
+
 function saveArchive(archive) {
     fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
+}
+
+function hashTerminal(input) {
+    return crypto
+        .createHash("sha256")
+        .update(input)
+        .digest("hex")
+        .slice(0, 24);
+}
+
+function safeHeader(headers, key) {
+    return headers[key.toLowerCase()] || "UNKNOWN";
+}
+
+async function reverseDNS(ip) {
+
+    if (!ip || ip === "UNKNOWN")
+        return "UNKNOWN";
+
+    if (net.isIP(ip) === 0)
+        return "UNKNOWN";
+
+    try {
+
+        const names = await dns.reverse(ip);
+
+        if (names.length)
+            return names[0];
+
+    } catch (err) {}
+
+    return "UNKNOWN";
+}
+
+function parseTerminal(blueprint, headers) {
+
+    const value = blueprint || "";
+
+    let os = "UNKNOWN";
+    let browser = "UNKNOWN";
+    let browser_version = "UNKNOWN";
+    let device = "UNKNOWN";
+    let app = "UNKNOWN";
+    let app_version = "UNKNOWN";
+
+    // Android
+    const android = value.match(/Android\s+([0-9.]+)/i);
+
+    if (android)
+        os = `Android ${android[1]}`;
+
+    // Windows
+    const windows = value.match(/Windows NT\s+([0-9.]+)/i);
+
+    if (windows)
+        os = `Windows NT ${windows[1]}`;
+
+    // Chrome
+    const chrome = value.match(/Chrome\/([0-9.]+)/i);
+
+    if (chrome) {
+
+        browser = "Chrome";
+        browser_version = chrome[1];
+
+    }
+
+    // Firefox
+    const firefox = value.match(/Firefox\/([0-9.]+)/i);
+
+    if (firefox) {
+
+        browser = "Firefox";
+        browser_version = firefox[1];
+
+    }
+
+    // Instagram
+    const instagram = value.match(/Instagram\s+([0-9.]+)/i);
+
+    if (instagram) {
+
+        app = "Instagram";
+        app_version = instagram[1];
+
+    }
+
+    // Device model
+
+    const deviceMatch =
+        value.match(/Android\s+[0-9.]+;\s*([^;)]+?)\s+Build\//i);
+
+    if (deviceMatch)
+        device = deviceMatch[1].trim();
+
+    return {
+
+        os,
+        browser,
+        browser_version,
+        device,
+        app,
+        app_version
+
+    };
+
 }
 
 // ---------- SOURCE DETECTION ----------
@@ -145,27 +271,58 @@ function classifyDetection(entity) {
 
 // ---------- ROUTE ----------
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     const archive = loadArchive();
+    const headers = req.headers;
 
-    const visitorIP =
-        req.headers["cf-connecting-ip"] ||
-        req.headers["x-forwarded-for"] ||
+    const visitorIP = normalizeIP(
+        headers["cf-connecting-ip"] ||
+        headers["x-forwarded-for"] ||
         req.socket.remoteAddress ||
-        "UNKNOWN";
+        "UNKNOWN"
+    );
 
     const userBlueprint =
-        req.headers["user-agent"] ||
+        headers["user-agent"] ||
         "UNKNOWN DEVICE";
 
     const referrer =
-        req.headers.referer ||
-        req.headers.referrer ||
+        headers.referer ||
+        headers.referrer ||
         "";
 
     const source = classifySource(referrer);
     const entity = classifyEntity(userBlueprint);
     const detection = classifyDetection(entity);
+
+    const hostname = await reverseDNS(visitorIP);
+
+    const clientHints = {
+        ua: safeHeader(headers, "sec-ch-ua"),
+        platform: safeHeader(headers, "sec-ch-ua-platform"),
+        mobile: safeHeader(headers, "sec-ch-ua-mobile"),
+        model: safeHeader(headers, "sec-ch-ua-model")
+    };
+
+    const language =
+        headers["accept-language"] ||
+        "UNKNOWN";
+
+    const terminal = parseTerminal(userBlueprint, headers);
+
+    const terminalEntropy = hashTerminal([
+        visitorIP,
+        userBlueprint,
+        language,
+        clientHints.ua,
+        clientHints.platform,
+        clientHints.mobile,
+        clientHints.model
+    ].join("|"));
+
+    const previousTerminalEncounters = archive.filter(item =>
+        item.terminal_entropy === terminalEntropy
+    );
 
     const encounter = {
         beacon: "AU-B001",
@@ -173,22 +330,38 @@ app.get("/", (req, res) => {
         cycle: archive.length + 1,
         utc: new Date().toISOString(),
         entropy: crypto.randomBytes(16).toString("hex"),
+
         origin: visitorIP,
+        hostname: hostname,
+
         blueprint: userBlueprint,
+        terminal: terminal,
+
         source: source,
         referrer: referrer || "NONE",
+
+        language: language,
+        client_hints: clientHints,
+
+        terminal_entropy: terminalEntropy,
+        returning_entity: previousTerminalEncounters.length > 0,
+        previous_terminal_encounters: previousTerminalEncounters.length,
+
         entity: entity,
         detection: detection,
+
+        headers: headers,
+
         message: currentBroadcast
     };
 
     archive.push(encounter);
     saveArchive(archive);
 
-    let output = JSON.stringify(encounter) + "\n\n";
+    let output = JSON.stringify(encounter, null, 2) + "\n\n";
 
     archive.slice(0, -1).reverse().forEach(item => {
-        output += JSON.stringify(item) + "\n";
+        output += JSON.stringify(item, null, 2) + "\n";
     });
 
     res.type("text/plain");
