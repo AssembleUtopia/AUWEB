@@ -202,6 +202,54 @@ function parseTerminal(blueprint, headers) {
 
 }
 
+function calculateDisclosure(encounter) {
+
+    let score = 0;
+
+    const fields = [
+
+        encounter.origin,
+        encounter.hostname,
+        encounter.referrer,
+
+        encounter.language,
+
+        encounter.terminal.os,
+        encounter.terminal.browser,
+        encounter.terminal.browser_version,
+        encounter.terminal.device,
+        encounter.terminal.app,
+        encounter.terminal.app_version,
+
+        encounter.client_hints.ua,
+        encounter.client_hints.platform,
+        encounter.client_hints.mobile,
+        encounter.client_hints.model
+
+    ];
+
+    fields.forEach(value => {
+
+        if (
+            value &&
+            value !== "UNKNOWN" &&
+            value !== "NONE"
+        ) {
+            score++;
+        }
+
+    });
+
+    if (score >= 12)
+        return "HIGH";
+
+    if (score >= 8)
+        return "MEDIUM";
+
+    return "LOW";
+
+}
+
 // ---------- SOURCE DETECTION ----------
 
 function classifySource(ref) {
@@ -352,8 +400,13 @@ app.get("/", async (req, res) => {
 
         headers: headers,
 
+        disclosure: "LOW",
+
         message: currentBroadcast
     };
+
+    encounter.disclosure =
+    calculateDisclosure(encounter);
 
     archive.push(encounter);
     saveArchive(archive);
@@ -366,6 +419,61 @@ app.get("/", async (req, res) => {
 
     res.type("text/plain");
     res.send(output);
+});
+
+app.get("/observatory", (req, res) => {
+
+    const archive = loadArchive();
+
+    const uniqueOrigins =
+        new Set(
+            archive.map(item => item.origin)
+        ).size;
+
+    const uniqueTerminals =
+        new Set(
+            archive.map(item => item.terminal_entropy)
+        ).size;
+
+    const entityCounts = {};
+
+    archive.forEach(item => {
+
+        entityCounts[item.entity] =
+            (entityCounts[item.entity] || 0) + 1;
+
+    });
+
+    const report = {
+
+        beacon: "AU-B001",
+
+        status: "OBSERVATORY OPEN",
+
+        total_encounters:
+            archive.length,
+
+        unique_origins:
+            uniqueOrigins,
+
+        unique_terminals:
+            uniqueTerminals,
+
+        entities:
+            entityCounts,
+
+        most_recent:
+            archive.length
+                ? archive[archive.length - 1]
+                : null
+
+    };
+
+    res.type("text/plain");
+    res.send(
+        JSON.stringify(report, null, 2)
+    );
+
 });
 
 // ---------- START ----------
