@@ -96,6 +96,33 @@ function saveArchive(archive) {
     fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
 }
 
+function updateEncounter(cycle, entropy, patch) {
+
+    const archive = loadArchive();
+
+    const index = archive.findIndex(item =>
+        item.cycle === cycle &&
+        item.entropy === entropy
+    );
+
+    if (index === -1)
+        return null;
+
+    archive[index] = {
+        ...archive[index],
+        ...patch,
+        updated_utc: new Date().toISOString()
+    };
+
+    archive[index].disclosure =
+        calculateDisclosure(archive[index]);
+
+    saveArchive(archive);
+
+    return archive[index];
+
+}
+
 function hashTerminal(input) {
     return crypto
         .createHash("sha256")
@@ -202,6 +229,7 @@ function parseTerminal(blueprint, headers) {
 
 }
 
+
 function calculateDisclosure(encounter) {
 
     let score = 0;
@@ -224,7 +252,17 @@ function calculateDisclosure(encounter) {
         encounter.client_hints.ua,
         encounter.client_hints.platform,
         encounter.client_hints.mobile,
-        encounter.client_hints.model
+        encounter.client_hints.model,
+
+        encounter.browser_probe?.timezone,
+        encounter.browser_probe?.screen,
+        encounter.browser_probe?.viewport,
+        encounter.browser_probe?.pixel_ratio,
+        encounter.browser_probe?.theme,
+        encounter.browser_probe?.cores,
+        encounter.browser_probe?.memory_gb,
+        encounter.browser_probe?.touch_points,
+        encounter.browser_probe?.network_type
 
     ];
 
@@ -317,6 +355,165 @@ function classifyDetection(entity) {
     return "UNCLASSIFIED ENTITY DETECTED";
 }
 
+function escapeHTML(value) {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+}
+
+function renderHTML(encounter, archive) {
+
+    const payload = JSON.stringify({
+        cycle: encounter.cycle,
+        entropy: encounter.entropy
+    });
+
+    let archiveText =
+        JSON.stringify(encounter, null, 2) + "\n\n";
+
+    archive.slice(0, -1).reverse().forEach(item => {
+        archiveText += JSON.stringify(item, null, 2) + "\n";
+    });
+
+    return `<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AU-B001</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #050805;
+    color: #8cff8c;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+}
+body {
+    padding: 18px;
+}
+</style>
+</head>
+<body>${escapeHTML(archiveText)}
+<script>
+(function () {
+
+    const start = Date.now();
+    const encounter = ${payload};
+
+    function collect(extra) {
+
+        const connection =
+            navigator.connection ||
+            navigator.mozConnection ||
+            navigator.webkitConnection ||
+            {};
+
+        return Object.assign({
+
+            cycle: encounter.cycle,
+            entropy: encounter.entropy,
+
+            timezone:
+                Intl.DateTimeFormat().resolvedOptions().timeZone ||
+                "UNKNOWN",
+
+            screen_width:
+                screen.width,
+
+            screen_height:
+                screen.height,
+
+            viewport_width:
+                window.innerWidth,
+
+            viewport_height:
+                window.innerHeight,
+
+            pixel_ratio:
+                window.devicePixelRatio || 1,
+
+            theme:
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light",
+
+            cores:
+                navigator.hardwareConcurrency ||
+                "UNKNOWN",
+
+            memory_gb:
+                navigator.deviceMemory ||
+                "UNKNOWN",
+
+            touch_points:
+                navigator.maxTouchPoints || 0,
+
+            network_type:
+                connection.effectiveType ||
+                connection.type ||
+                "UNKNOWN",
+
+            save_data:
+                connection.saveData === true,
+
+            dwell_seconds:
+                Math.round((Date.now() - start) / 1000)
+
+        }, extra || {});
+
+    }
+
+    function send(extra) {
+
+        const data =
+            JSON.stringify(collect(extra));
+
+        try {
+
+            navigator.sendBeacon(
+                "/beacon",
+                new Blob(
+                    [data],
+                    { type: "application/json" }
+                )
+            );
+
+        } catch (err) {
+
+            fetch("/beacon", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: data,
+                keepalive: true
+            }).catch(function () {});
+
+        }
+
+    }
+
+    send({
+        event: "arrival"
+    });
+
+    window.addEventListener("pagehide", function () {
+        send({
+            event: "departure"
+        });
+    });
+
+})();
+</script>
+</body>
+</html>`;
+
+}
+
 // ---------- ROUTE ----------
 
 app.get("/", async (req, res) => {
@@ -402,6 +599,10 @@ app.get("/", async (req, res) => {
 
         disclosure: "LOW",
 
+        browser_probe: {
+        status: "AWAITING_BROWSER_SIGNAL"
+        },
+
         message: currentBroadcast
     };
 
@@ -417,8 +618,141 @@ app.get("/", async (req, res) => {
         output += JSON.stringify(item, null, 2) + "\n";
     });
 
-    res.type("text/plain");
-    res.send(output);
+    const wantsPlain =
+    req.query.format === "plain" ||
+    entity !== "HUMAN_OPERATOR" &&
+    entity !== "MOBILE_RELAY";
+
+    if (wantsPlain) {
+       res.type("text/plain");
+       res.send(output);
+       return;
+    }
+
+    res.type("html");
+    res.send(renderHTML(encounter, archive));
+});
+
+app.post("/beacon", (req, res) => {
+
+    const body = req.body || {};
+
+    const cycle =
+        Number(body.cycle);
+
+    const entropy =
+        body.entropy;
+
+    if (!cycle || !entropy) {
+
+        res.status(400).json({
+            status: "REJECTED",
+            reason: "MISSING_CYCLE_OR_ENTROPY"
+        });
+
+        return;
+
+    }
+
+    const archive = loadArchive();
+
+    const existing = archive.find(item =>
+        item.cycle === cycle &&
+        item.entropy === entropy
+    );
+
+    if (!existing) {
+
+        res.status(404).json({
+            status: "NOT_FOUND"
+        });
+
+        return;
+
+    }
+
+    const previousProbe =
+        existing.browser_probe || {};
+
+    const probe = {
+
+        ...previousProbe,
+
+        last_event:
+            body.event || "signal",
+
+        timezone:
+            body.timezone ||
+            previousProbe.timezone ||
+            "UNKNOWN",
+
+        screen:
+            body.screen_width && body.screen_height
+                ? `${body.screen_width}x${body.screen_height}`
+                : previousProbe.screen || "UNKNOWN",
+
+        viewport:
+            body.viewport_width && body.viewport_height
+                ? `${body.viewport_width}x${body.viewport_height}`
+                : previousProbe.viewport || "UNKNOWN",
+
+        pixel_ratio:
+            body.pixel_ratio ||
+            previousProbe.pixel_ratio ||
+            "UNKNOWN",
+
+        theme:
+            body.theme ||
+            previousProbe.theme ||
+            "UNKNOWN",
+
+        cores:
+            body.cores ||
+            previousProbe.cores ||
+            "UNKNOWN",
+
+        memory_gb:
+            body.memory_gb ||
+            previousProbe.memory_gb ||
+            "UNKNOWN",
+
+        touch_points:
+            body.touch_points ??
+            previousProbe.touch_points ??
+            "UNKNOWN",
+
+        network_type:
+            body.network_type ||
+            previousProbe.network_type ||
+            "UNKNOWN",
+
+        save_data:
+            body.save_data ??
+            previousProbe.save_data ??
+            "UNKNOWN",
+
+        dwell_seconds:
+            body.dwell_seconds ??
+            previousProbe.dwell_seconds ??
+            0,
+
+        received_utc:
+            new Date().toISOString()
+
+    };
+
+    const updated = updateEncounter(cycle, entropy, {
+        browser_probe: probe
+    });
+
+    res.json({
+        status: "RECEIVED",
+        cycle: cycle,
+        disclosure: updated
+            ? updated.disclosure
+            : "UNKNOWN"
+    });
+
 });
 
 app.get("/observatory", (req, res) => {
