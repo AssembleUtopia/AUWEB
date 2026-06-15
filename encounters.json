@@ -4301,8 +4301,8 @@
       "x-forwarded-proto": "https"
     },
     "browser_probe": {
-      "status": "BROWSER_SIGNAL_RECEIVED",
-      "last_event": "arrival",
+      "status": "ENCOUNTER_COMPLETED",
+      "last_event": "departure",
       "timezone": "Europe/Kiev",
       "screen": "1920x1080",
       "viewport": "1920x993",
@@ -4313,11 +4313,11 @@
       "touch_points": 0,
       "network_type": "4g",
       "save_data": false,
-      "dwell_seconds": 0,
-      "received_utc": "2026-06-15T17:15:01.672Z"
+      "dwell_seconds": 325,
+      "received_utc": "2026-06-15T17:20:27.191Z"
     },
     "disclosure": "HIGH",
     "message": "SIGNAL PERSISTS",
-    "updated_utc": "2026-06-15T17:15:01.673Z"
+    "updated_utc": "2026-06-15T17:20:27.192Z"
   }
 ]
