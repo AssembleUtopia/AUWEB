@@ -514,12 +514,14 @@ body {
 
 }
 
-// ---------- ROUTE ----------
+function renderProbeLoader(encounter) {
 
-app.get("/", (req, res) => {
+    const payload = JSON.stringify({
+        cycle: encounter.cycle,
+        entropy: encounter.entropy
+    });
 
-    res.type("html");
-    res.send(`<!doctype html>
+    return `<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -532,6 +534,7 @@ html, body {
     color: #8cff8c;
     font-family: Consolas, "Courier New", monospace;
     font-size: 13px;
+    white-space: pre-wrap;
 }
 body {
     padding: 18px;
@@ -539,58 +542,176 @@ body {
 </style>
 </head>
 <body>AU-B001
-STATUS: LISTENING
-PROBE: INITIALIZING
-SIGNAL: AWAITING DISCLOSURE</body>
+STATUS: INITIAL CONTACT RECORDED
+CYCLE: ${encounter.cycle}
+PROBE: ATTEMPTING BROWSER DISCLOSURE
+SIGNAL: STANDBY</body>
 
 <script>
 (function () {
 
-    const connection =
-        navigator.connection ||
-        navigator.mozConnection ||
-        navigator.webkitConnection ||
-        {};
+    const encounter = ${payload};
+    const start = Date.now();
 
-    const probe = {
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UNKNOWN",
-        screen_width: screen.width,
-        screen_height: screen.height,
-        viewport_width: window.innerWidth,
-        viewport_height: window.innerHeight,
-        pixel_ratio: window.devicePixelRatio || 1,
-        theme: window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light",
-        cores: navigator.hardwareConcurrency || "UNKNOWN",
-        memory_gb: navigator.deviceMemory || "UNKNOWN",
-        touch_points: navigator.maxTouchPoints || 0,
-        network_type: connection.effectiveType || connection.type || "UNKNOWN",
-        save_data: connection.saveData === true
-    };
+    function collect(extra) {
 
-    fetch("/arrive", {
+        const connection =
+            navigator.connection ||
+            navigator.mozConnection ||
+            navigator.webkitConnection ||
+            {};
+
+        return Object.assign({
+            cycle: encounter.cycle,
+            entropy: encounter.entropy,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UNKNOWN",
+            screen_width: screen.width,
+            screen_height: screen.height,
+            viewport_width: window.innerWidth,
+            viewport_height: window.innerHeight,
+            pixel_ratio: window.devicePixelRatio || 1,
+            theme: window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light",
+            cores: navigator.hardwareConcurrency || "UNKNOWN",
+            memory_gb: navigator.deviceMemory || "UNKNOWN",
+            touch_points: navigator.maxTouchPoints || 0,
+            network_type: connection.effectiveType || connection.type || "UNKNOWN",
+            save_data: connection.saveData === true,
+            dwell_seconds: Math.round((Date.now() - start) / 1000)
+        }, extra || {});
+    }
+
+    fetch("/beacon", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(probe)
+        body: JSON.stringify(collect({
+            event: "arrival",
+            mode: "BROWSER_PROBE"
+        }))
     })
     .then(res => res.json())
-    .then(data => {
+    .then(() => {
         window.location.href =
-            "/signal/" + data.cycle + "/" + data.entropy;
+            "/signal/" + encounter.cycle + "/" + encounter.entropy;
     })
     .catch(() => {
-        document.body.textContent =
-            "AU-B001\\nSTATUS: PROBE FAILED\\nSIGNAL: INTERRUPTED";
+        window.location.href =
+            "/signal/" + encounter.cycle + "/" + encounter.entropy;
     });
 
 })();
 </script>
-</html>`);
+</html>`;
 
+}
+
+// ---------- ROUTE ----------
+
+app.get("/", async (req, res) => {
+    const archive = loadArchive();
+    const headers = req.headers;
+
+    const visitorIP = normalizeIP(
+        headers["cf-connecting-ip"] ||
+        headers["x-forwarded-for"] ||
+        req.socket.remoteAddress ||
+        "UNKNOWN"
+    );
+
+    const userBlueprint = headers["user-agent"] || "UNKNOWN DEVICE";
+    const referrer = headers.referer || headers.referrer || "";
+
+    const source = classifySource(referrer);
+    const entity = classifyEntity(userBlueprint);
+    const detection = classifyDetection(entity);
+    const hostname = await reverseDNS(visitorIP);
+
+    const clientHints = {
+        ua: safeHeader(headers, "sec-ch-ua"),
+        platform: safeHeader(headers, "sec-ch-ua-platform"),
+        mobile: safeHeader(headers, "sec-ch-ua-mobile"),
+        model: safeHeader(headers, "sec-ch-ua-model")
+    };
+
+    const language = headers["accept-language"] || "UNKNOWN";
+    const terminal = parseTerminal(userBlueprint, headers);
+
+    const terminalEntropy = hashTerminal([
+        visitorIP,
+        userBlueprint,
+        language,
+        clientHints.ua,
+        clientHints.platform,
+        clientHints.mobile,
+        clientHints.model
+    ].join("|"));
+
+    const previousTerminalEncounters = archive.filter(item =>
+        item.terminal_entropy === terminalEntropy
+    );
+
+    const entropy = crypto.randomBytes(16).toString("hex");
+
+    const encounter = {
+        beacon: "AU-B001",
+        status: "TRANSMITTING",
+        cycle: archive.length + 1,
+        utc: new Date().toISOString(),
+        entropy: entropy,
+
+        origin: visitorIP,
+        hostname: hostname,
+
+        blueprint: userBlueprint,
+        terminal: terminal,
+
+        source: source,
+        referrer: referrer || "NONE",
+
+        language: language,
+        client_hints: clientHints,
+
+        terminal_entropy: terminalEntropy,
+        returning_entity: previousTerminalEncounters.length > 0,
+        previous_terminal_encounters: previousTerminalEncounters.length,
+
+        entity: entity,
+        detection: detection,
+
+        headers: headers,
+
+        browser_probe: {
+            status: "NO_BROWSER_SIGNAL_YET",
+            last_event: "initial_request",
+            mode: "SERVER_SIDE_CAPTURE",
+            timezone: "UNKNOWN",
+            screen: "UNKNOWN",
+            viewport: "UNKNOWN",
+            pixel_ratio: "UNKNOWN",
+            theme: "UNKNOWN",
+            cores: "UNKNOWN",
+            memory_gb: "UNKNOWN",
+            touch_points: "UNKNOWN",
+            network_type: "UNKNOWN",
+            save_data: "UNKNOWN",
+            dwell_seconds: 0
+        },
+
+        disclosure: "LOW",
+        message: currentBroadcast
+    };
+
+    encounter.disclosure = calculateDisclosure(encounter);
+
+    archive.push(encounter);
+    saveArchive(archive);
+
+    res.type("html");
+    res.send(renderProbeLoader(encounter));
 });
 
 app.post("/arrive", async (req, res) => {
@@ -780,10 +901,15 @@ app.post("/beacon", (req, res) => {
 
         ...previousProbe,
 
+        mode:
+            body.mode ||
+            previousProbe.mode ||
+            "BROWSER_PROBE",
+
         status:
-        body.event === "departure"
-        ? "ENCOUNTER_COMPLETED"
-        : "BROWSER_SIGNAL_RECEIVED",
+            body.event === "departure"
+                ? "ENCOUNTER_COMPLETED"
+                : "BROWSER_SIGNAL_RECEIVED",
 
         last_event:
             body.event || "signal",
