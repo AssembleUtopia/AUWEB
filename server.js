@@ -733,6 +733,115 @@ function buildInternalState() {
     };
 }
 
+function renderConstellations() {
+
+    const archive = loadArchive();
+
+    const map = {};
+
+    archive.forEach(item => {
+
+        const entity =
+            item.entity ||
+            "UNCLASSIFIED";
+
+        if (!map[entity]) {
+            map[entity] = {
+                entity: entity,
+                encounters: 0,
+                first_cycle: item.cycle || null,
+                last_cycle: item.cycle || null,
+                first_seen_utc: item.utc || null,
+                last_seen_utc: item.utc || null
+            };
+        }
+
+        map[entity].encounters++;
+
+        if (
+            item.cycle &&
+            (
+                map[entity].first_cycle === null ||
+                item.cycle < map[entity].first_cycle
+            )
+        ) {
+            map[entity].first_cycle = item.cycle;
+            map[entity].first_seen_utc = item.utc || null;
+        }
+
+        if (
+            item.cycle &&
+            (
+                map[entity].last_cycle === null ||
+                item.cycle > map[entity].last_cycle
+            )
+        ) {
+            map[entity].last_cycle = item.cycle;
+            map[entity].last_seen_utc = item.utc || null;
+        }
+
+    });
+
+    const stars =
+        Object.values(map)
+            .sort((a, b) => b.encounters - a.encounters);
+
+    const max =
+        stars.length
+            ? stars[0].encounters
+            : 1;
+
+    let output = "";
+
+    output += "AU-B001 CONSTELLATIONS\n";
+    output += "STATUS: SKY RENDERED\n";
+    output += "MODE: PLAINTEXT\n";
+    output += "KNOWN ENTITIES: " + stars.length + "\n";
+    output += "TOTAL ENCOUNTERS: " + archive.length + "\n";
+    output += "GENERATED UTC: " + new Date().toISOString() + "\n\n";
+
+    output += "Each star field is scaled relative to the brightest entity.\n";
+    output += "Maximum brightness: 20 stars.\n\n";
+
+    output += "----------------------------------------\n\n";
+
+    stars.forEach(item => {
+
+        const count =
+            Math.max(
+                1,
+                Math.ceil((item.encounters / max) * 20)
+            );
+
+        const starLine =
+            "★".repeat(count);
+
+        output += item.entity + "\n";
+        output += starLine + "\n";
+        output += "encounters: " + item.encounters + "\n";
+        output += "first observed cycle: " + item.first_cycle + "\n";
+        output += "last observed cycle: " + item.last_cycle + "\n";
+
+        if (item.first_seen_utc) {
+            output += "first observed utc: " + item.first_seen_utc + "\n";
+        }
+
+        if (item.last_seen_utc) {
+            output += "last observed utc: " + item.last_seen_utc + "\n";
+        }
+
+        output += "\n----------------------------------------\n\n";
+
+    });
+
+    if (!stars.length) {
+        output += "NO STARS DETECTED.\n";
+    }
+
+    return output;
+
+}
+
 // ---------- ROUTE ----------
 
 app.get("/", async (req, res) => {
@@ -1127,6 +1236,13 @@ app.get("/internal", (req, res) => {
 
     res.type("text/plain");
     res.send(JSON.stringify(report, null, 2));
+
+});
+
+app.get("/constellations", (req, res) => {
+
+    res.type("text/plain");
+    res.send(renderConstellations());
 
 });
 

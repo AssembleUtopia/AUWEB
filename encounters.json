@@ -5301,5 +5301,70 @@
     "presence": "ENTITY ARRIVED / BROWSER SIGNAL ABSENT",
     "disclosure": "LOW",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 329,
+    "utc": "2026-06-15T23:37:18.930Z",
+    "entropy": "276981010020eaeb0ffdd05b9c4bf009",
+    "origin": "44.203.72.242",
+    "hostname": "UNKNOWN",
+    "blueprint": "okhttp/5.3.0",
+    "terminal": {
+      "os": "UNKNOWN",
+      "browser": "UNKNOWN",
+      "browser_version": "UNKNOWN",
+      "device": "UNKNOWN",
+      "app": "UNKNOWN",
+      "app_version": "UNKNOWN"
+    },
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "language": "UNKNOWN",
+    "client_hints": {
+      "ua": "UNKNOWN",
+      "platform": "UNKNOWN",
+      "mobile": "UNKNOWN",
+      "model": "UNKNOWN"
+    },
+    "terminal_entropy": "f23976df2c2638d68a4b988b",
+    "returning_entity": false,
+    "previous_terminal_encounters": 0,
+    "entity": "OKHTTP_ENTITY",
+    "detection": "MOBILE MACHINE CLIENT DETECTED",
+    "headers": {
+      "host": "assembleutopia.com",
+      "user-agent": "okhttp/5.3.0",
+      "accept-encoding": "gzip, br",
+      "cdn-loop": "cloudflare; loops=1",
+      "cf-connecting-ip": "44.203.72.242",
+      "cf-ipcountry": "US",
+      "cf-ray": "a0c56d3f0b29e643-IAD",
+      "cf-visitor": "{\"scheme\":\"https\"}",
+      "cf-warp-tag-id": "6eb7026d-f073-47fa-8ffb-1f41da0a3566",
+      "connection": "keep-alive",
+      "x-forwarded-for": "44.203.72.242",
+      "x-forwarded-proto": "https"
+    },
+    "browser_probe": {
+      "status": "NO_BROWSER_SIGNAL_YET",
+      "last_event": "initial_request",
+      "mode": "SERVER_SIDE_CAPTURE",
+      "timezone": "UNKNOWN",
+      "screen": "UNKNOWN",
+      "viewport": "UNKNOWN",
+      "pixel_ratio": "UNKNOWN",
+      "theme": "UNKNOWN",
+      "cores": "UNKNOWN",
+      "memory_gb": "UNKNOWN",
+      "touch_points": "UNKNOWN",
+      "network_type": "UNKNOWN",
+      "save_data": "UNKNOWN",
+      "dwell_seconds": 0
+    },
+    "presence": "ENTITY ARRIVED / BROWSER SIGNAL ABSENT",
+    "disclosure": "LOW",
+    "message": "SIGNAL PERSISTS"
   }
 ]
