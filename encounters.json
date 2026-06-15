@@ -2554,5 +2554,19 @@
     "entity": "HUMAN_OPERATOR",
     "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 257,
+    "utc": "2026-06-15T13:32:07.088Z",
+    "entropy": "ce77767b31be05d563a2214c809f37f5",
+    "origin": "43.157.43.147",
+    "blueprint": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1",
+    "source": "DIRECT",
+    "referrer": "NONE",
+    "entity": "MOBILE_RELAY",
+    "detection": "MOBILE RELAY DETECTED",
+    "message": "SIGNAL PERSISTS"
   }
 ]
