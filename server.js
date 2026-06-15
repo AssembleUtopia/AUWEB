@@ -8,6 +8,8 @@ const ARCHIVE_FILE = "encounters.json";
 
 let currentBroadcast = "SIGNAL PERSISTS";
 
+// ---------- TERMINAL CONTROL ----------
+
 process.stdin.setEncoding("utf8");
 
 process.stdin.on("data", (input) => {
@@ -57,6 +59,8 @@ process.stdin.on("data", (input) => {
     console.log("Broadcast changed:", currentBroadcast);
 });
 
+// ---------- ARCHIVE ----------
+
 function loadArchive() {
     if (!fs.existsSync(ARCHIVE_FILE)) return [];
 
@@ -71,6 +75,8 @@ function loadArchive() {
 function saveArchive(archive) {
     fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
 }
+
+// ---------- SOURCE DETECTION ----------
 
 function classifySource(ref) {
     if (!ref) return "DIRECT";
@@ -89,10 +95,13 @@ function classifySource(ref) {
     return "EXTERNAL";
 }
 
+// ---------- ENTITY DETECTION ----------
+
 function classifyEntity(blueprint) {
     const value = (blueprint || "").toLowerCase();
 
     if (value.includes("googlebot")) return "GOOGLEBOT";
+    if (value.includes("google-safety")) return "GOOGLE_SAFETY";
     if (value.includes("bingbot")) return "BINGBOT";
     if (value.includes("applebot")) return "APPLEBOT";
     if (value.includes("discordbot")) return "DISCORDBOT";
@@ -100,9 +109,12 @@ function classifyEntity(blueprint) {
     if (value.includes("yandexbot")) return "YANDEXBOT";
     if (value.includes("ahrefsbot")) return "AHREFSBOT";
     if (value.includes("semrushbot")) return "SEMRUSHBOT";
+    if (value.includes("facebookexternalhit")) return "FACEBOOK_PREVIEW_ENTITY";
     if (value.includes("leakix") || value.includes("l9scan")) return "LEAKIX_SCANNER";
     if (value.includes("hunt-bot")) return "HUNT_DISCOVERY_ENGINE";
     if (value.includes("ct-wp-scanner")) return "WORDPRESS_SCANNER";
+    if (value.includes("cms-checker")) return "CMS_CHECKER";
+    if (value.includes("ev-crawler")) return "EV_CRAWLER";
     if (value.includes("python") || value.includes("aiohttp")) return "PYTHON_ENTITY";
     if (value.includes("go-http-client")) return "GO_HTTP_CLIENT";
     if (value.includes("okhttp")) return "OKHTTP_ENTITY";
@@ -112,11 +124,16 @@ function classifyEntity(blueprint) {
     return "UNKNOWN_ENTITY";
 }
 
-function classifyMessage(entity) {
-    if (entity === "GOOGLEBOT") return "AUTONOMOUS RECONNAISSANCE DETECTED";
+function classifyDetection(entity) {
+    if (entity === "GOOGLEBOT") return "GOOGLEBOT RECONNAISSANCE DETECTED";
+    if (entity === "GOOGLE_SAFETY") return "GOOGLE SAFETY INSPECTION DETECTED";
+    if (entity === "SEMRUSHBOT") return "SEMRUSH INDEXING ENTITY DETECTED";
+    if (entity === "FACEBOOK_PREVIEW_ENTITY") return "FACEBOOK PREVIEW ENTITY DETECTED";
     if (entity === "LEAKIX_SCANNER") return "SCANNER SWARM DETECTED";
     if (entity === "HUNT_DISCOVERY_ENGINE") return "DISCOVERY ENGINE DETECTED";
-    if (entity === "WORDPRESS_SCANNER") return "HOSTILE RECONNAISSANCE DETECTED";
+    if (entity === "WORDPRESS_SCANNER") return "HOSTILE WORDPRESS RECONNAISSANCE DETECTED";
+    if (entity === "CMS_CHECKER") return "CMS INSPECTION ENTITY DETECTED";
+    if (entity === "EV_CRAWLER") return "EXTERNAL CRAWLER DETECTED";
     if (entity === "GO_HTTP_CLIENT") return "UNKNOWN MACHINE SIGNAL DETECTED";
     if (entity === "PYTHON_ENTITY") return "SCRIPTED ENTITY DETECTED";
     if (entity === "OKHTTP_ENTITY") return "MOBILE MACHINE CLIENT DETECTED";
@@ -125,6 +142,8 @@ function classifyMessage(entity) {
 
     return "UNCLASSIFIED ENTITY DETECTED";
 }
+
+// ---------- ROUTE ----------
 
 app.get("/", (req, res) => {
     const archive = loadArchive();
@@ -146,6 +165,7 @@ app.get("/", (req, res) => {
 
     const source = classifySource(referrer);
     const entity = classifyEntity(userBlueprint);
+    const detection = classifyDetection(entity);
 
     const encounter = {
         beacon: "AU-B001",
@@ -158,7 +178,7 @@ app.get("/", (req, res) => {
         source: source,
         referrer: referrer || "NONE",
         entity: entity,
-        detection: classifyMessage(entity),
+        detection: detection,
         message: currentBroadcast
     };
 
@@ -174,6 +194,8 @@ app.get("/", (req, res) => {
     res.type("text/plain");
     res.send(output);
 });
+
+// ---------- START ----------
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log("AU-B001 transmitting...");
