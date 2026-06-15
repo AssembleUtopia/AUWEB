@@ -117,6 +117,9 @@ function updateEncounter(cycle, entropy, patch) {
     archive[index].disclosure =
         calculateDisclosure(archive[index]);
 
+    archive[index].presence =
+        classifyPresence(archive[index]);
+
     saveArchive(archive);
 
     return archive[index];
@@ -609,6 +612,31 @@ SIGNAL: STANDBY</body>
 
 }
 
+function classifyPresence(encounter) {
+
+    const probe = encounter.browser_probe || {};
+    const entity = encounter.entity || "UNKNOWN_ENTITY";
+
+    if (probe.status === "ENCOUNTER_COMPLETED") {
+        return "ENTITY DEPARTED / ENCOUNTER COMPLETED";
+    }
+
+    if (probe.status === "BROWSER_SIGNAL_RECEIVED") {
+        return "ENTITY ARRIVED / DEPARTURE NOT CONFIRMED";
+    }
+
+    if (probe.status === "NO_BROWSER_SIGNAL_YET") {
+
+        if (entity === "MOBILE_RELAY") {
+            return "MOBILE RELAY ARRIVED / DEPARTURE NOT CONFIRMED";
+        }
+
+        return "ENTITY ARRIVED / BROWSER SIGNAL ABSENT";
+    }
+
+    return "ENTITY ARRIVED / DEPARTURE NOT CONFIRMED";
+}
+
 // ---------- ROUTE ----------
 
 app.get("/", async (req, res) => {
@@ -701,11 +729,13 @@ app.get("/", async (req, res) => {
             dwell_seconds: 0
         },
 
+        presence: "ENTITY ARRIVED / DEPARTURE NOT CONFIRMED",
         disclosure: "LOW",
         message: currentBroadcast
     };
 
     encounter.disclosure = calculateDisclosure(encounter);
+    encounter.presence = classifyPresence(encounter);
 
     archive.push(encounter);
     saveArchive(archive);
