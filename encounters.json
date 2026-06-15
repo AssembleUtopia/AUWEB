@@ -3044,5 +3044,19 @@
     "entity": "MOBILE_RELAY",
     "detection": "MOBILE RELAY DETECTED",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "TRANSMITTING",
+    "cycle": 292,
+    "utc": "2026-06-15T14:30:33.163Z",
+    "entropy": "eacf7a3ddc3da8a4fbd052027271842e",
+    "origin": "46.150.67.215",
+    "blueprint": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
+    "source": "EXTERNAL",
+    "referrer": "https://assembleutopia.gitbook.io/assemble-utopia/conception-1/arrangement/divisions",
+    "entity": "HUMAN_OPERATOR",
+    "detection": "KNOWN OR EXTERNAL OPERATOR DETECTED",
+    "message": "SIGNAL PERSISTS"
   }
 ]
