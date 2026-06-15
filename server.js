@@ -516,9 +516,87 @@ body {
 
 // ---------- ROUTE ----------
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
+
+    res.type("html");
+    res.send(`<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AU-B001</title>
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #050805;
+    color: #8cff8c;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+}
+body {
+    padding: 18px;
+}
+</style>
+</head>
+<body>AU-B001
+STATUS: LISTENING
+PROBE: INITIALIZING
+SIGNAL: AWAITING DISCLOSURE</body>
+
+<script>
+(function () {
+
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection ||
+        {};
+
+    const probe = {
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "UNKNOWN",
+        screen_width: screen.width,
+        screen_height: screen.height,
+        viewport_width: window.innerWidth,
+        viewport_height: window.innerHeight,
+        pixel_ratio: window.devicePixelRatio || 1,
+        theme: window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light",
+        cores: navigator.hardwareConcurrency || "UNKNOWN",
+        memory_gb: navigator.deviceMemory || "UNKNOWN",
+        touch_points: navigator.maxTouchPoints || 0,
+        network_type: connection.effectiveType || connection.type || "UNKNOWN",
+        save_data: connection.saveData === true
+    };
+
+    fetch("/arrive", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(probe)
+    })
+    .then(res => res.json())
+    .then(data => {
+        window.location.href =
+            "/signal/" + data.cycle + "/" + data.entropy;
+    })
+    .catch(() => {
+        document.body.textContent =
+            "AU-B001\\nSTATUS: PROBE FAILED\\nSIGNAL: INTERRUPTED";
+    });
+
+})();
+</script>
+</html>`);
+
+});
+
+app.post("/arrive", async (req, res) => {
     const archive = loadArchive();
     const headers = req.headers;
+    const body = req.body || {};
 
     const visitorIP = normalizeIP(
         headers["cf-connecting-ip"] ||
@@ -539,7 +617,6 @@ app.get("/", async (req, res) => {
     const source = classifySource(referrer);
     const entity = classifyEntity(userBlueprint);
     const detection = classifyDetection(entity);
-
     const hostname = await reverseDNS(visitorIP);
 
     const clientHints = {
@@ -569,12 +646,14 @@ app.get("/", async (req, res) => {
         item.terminal_entropy === terminalEntropy
     );
 
+    const entropy = crypto.randomBytes(16).toString("hex");
+
     const encounter = {
         beacon: "AU-B001",
         status: "TRANSMITTING",
         cycle: archive.length + 1,
         utc: new Date().toISOString(),
-        entropy: crypto.randomBytes(16).toString("hex"),
+        entropy: entropy,
 
         origin: visitorIP,
         hostname: hostname,
@@ -597,36 +676,59 @@ app.get("/", async (req, res) => {
 
         headers: headers,
 
-        disclosure: "LOW",
-
         browser_probe: {
-        status: "AWAITING_BROWSER_SIGNAL"
+            status: "BROWSER_SIGNAL_RECEIVED",
+            last_event: "arrival",
+            timezone: body.timezone || "UNKNOWN",
+            screen: body.screen_width && body.screen_height
+                ? `${body.screen_width}x${body.screen_height}`
+                : "UNKNOWN",
+            viewport: body.viewport_width && body.viewport_height
+                ? `${body.viewport_width}x${body.viewport_height}`
+                : "UNKNOWN",
+            pixel_ratio: body.pixel_ratio || "UNKNOWN",
+            theme: body.theme || "UNKNOWN",
+            cores: body.cores || "UNKNOWN",
+            memory_gb: body.memory_gb || "UNKNOWN",
+            touch_points: body.touch_points ?? "UNKNOWN",
+            network_type: body.network_type || "UNKNOWN",
+            save_data: body.save_data ?? "UNKNOWN",
+            dwell_seconds: 0,
+            received_utc: new Date().toISOString()
         },
 
+        disclosure: "LOW",
         message: currentBroadcast
     };
 
     encounter.disclosure =
-    calculateDisclosure(encounter);
+        calculateDisclosure(encounter);
 
     archive.push(encounter);
     saveArchive(archive);
 
-    let output = JSON.stringify(encounter, null, 2) + "\n\n";
-
-    archive.slice(0, -1).reverse().forEach(item => {
-        output += JSON.stringify(item, null, 2) + "\n";
+    res.json({
+        status: "ARRIVAL_RECORDED",
+        cycle: encounter.cycle,
+        entropy: encounter.entropy
     });
+});
 
-    const wantsPlain =
-    req.query.format === "plain" ||
-    entity !== "HUMAN_OPERATOR" &&
-    entity !== "MOBILE_RELAY";
+app.get("/signal/:cycle/:entropy", (req, res) => {
+    const archive = loadArchive();
 
-    if (wantsPlain) {
-       res.type("text/plain");
-       res.send(output);
-       return;
+    const cycle = Number(req.params.cycle);
+    const entropy = req.params.entropy;
+
+    const encounter = archive.find(item =>
+        item.cycle === cycle &&
+        item.entropy === entropy
+    );
+
+    if (!encounter) {
+        res.status(404).type("text/plain");
+        res.send("AU-B001\nSTATUS: SIGNAL NOT FOUND");
+        return;
     }
 
     res.type("html");
@@ -677,6 +779,11 @@ app.post("/beacon", (req, res) => {
     const probe = {
 
         ...previousProbe,
+
+        status:
+        body.event === "departure"
+        ? "ENCOUNTER_COMPLETED"
+        : "BROWSER_SIGNAL_RECEIVED",
 
         last_event:
             body.event || "signal",
@@ -753,6 +860,13 @@ app.post("/beacon", (req, res) => {
             : "UNKNOWN"
     });
 
+});
+
+app.get("/archive", (req, res) => {
+    const archive = loadArchive();
+
+    res.type("application/json");
+    res.send(JSON.stringify(archive, null, 2));
 });
 
 app.get("/observatory", (req, res) => {
