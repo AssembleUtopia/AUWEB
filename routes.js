@@ -1,6 +1,8 @@
 const express = require("express");
 const crypto = require("crypto");
 
+const { renderPlainPage, renderDocumentPage } = require("./navigation");
+
 function registerRoutes(app, deps) {
 
     const {
@@ -396,48 +398,62 @@ function registerRoutes(app, deps) {
     });
 
     app.get("/archive", (req, res) => {
-
         const archive = loadArchive();
 
-        res.type("application/json");
+        res.type("html");
         res.send(
-            JSON.stringify(
-                archive,
-                null,
-                2
+            renderPlainPage(
+                "/archive",
+                JSON.stringify(archive, null, 2),
+                "AU-B001 ARCHIVE"
             )
         );
-
     });
 
     app.get("/internal", (req, res) => {
-
         const report = buildInternalState(deps.getBroadcast());
 
-        res.type("text/plain");
-        res.send(JSON.stringify(report, null, 2));
-
+        res.type("html");
+        res.send(
+            renderPlainPage(
+                "/internal",
+                JSON.stringify(report, null, 2),
+                "AU-B001 INTERNAL"
+            )
+        );
     });
 
     app.get("/constellations", (req, res) => {
-
-        res.type("text/plain");
-        res.send(renderConstellations());
-
+        res.type("html");
+        res.send(
+            renderDocumentPage(
+                "/constellations",
+                renderConstellations(),
+                "AU-B001 CONSTELLATIONS"
+            )
+        );
     });
 
     app.get("/dream", (req, res) => {
-
-        res.type("text/plain");
-        res.send(renderLatestDream());
-
+        res.type("html");
+        res.send(
+            renderDocumentPage(
+                "/dream",
+                renderLatestDream(),
+                "AU-B001 DREAM"
+            )
+        );
     });
 
     app.get("/dreammap", (req, res) => {
-
-        res.type("text/plain");
-        res.send(renderDreamMap());
-
+        res.type("html");
+        res.send(
+            renderDocumentPage(
+                "/dreammap",
+                renderDreamMap(),
+                "AU-B001 DREAM MAP"
+            )
+        );
     });
 
     app.get("/observatory", (req, res) => {
@@ -476,9 +492,14 @@ function registerRoutes(app, deps) {
                     : null
         };
 
-        res.type("text/plain");
-        res.send(JSON.stringify(report, null, 2));
-
+        res.type("html");
+        res.send(
+            renderDocumentPage(
+                "/observatory",
+                JSON.stringify(report, null, 2),
+                "AU-B001 OBSERVATORY"
+            )
+        );
     });
 
     app.get("/signal/:cycle/:entropy", (req, res) => {
@@ -520,12 +541,16 @@ function registerRoutes(app, deps) {
     });
 
     app.get("/emergence", (req, res) => {
-
         const emergence = loadEmergence();
 
-        res.type("text/plain");
-        res.send(renderEmergence(emergence));
-
+        res.type("html");
+        res.send(
+            renderDocumentPage(
+                "/emergence",
+                renderEmergence(emergence),
+                "AU-B001 EMERGENCE"
+            )
+        );
     });
 
 }

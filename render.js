@@ -1,6 +1,8 @@
 const { loadArchive } = require("./archive");
 const { loadDreams } = require("./dreams");
 
+const { renderNavigation, navigationCSS } = require("./navigation");
+
 function escapeHTML(value) {
     return String(value)
         .replaceAll("&", "&amp;")
@@ -35,14 +37,20 @@ html, body {
     color: #8cff8c;
     font-family: Consolas, "Courier New", monospace;
     font-size: 13px;
-    white-space: pre-wrap;
 }
-body {
+
+.au-terminal-output {
+    margin: 0;
     padding: 18px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
+
+${navigationCSS()}
 </style>
 </head>
-<body>${escapeHTML(archiveText)}
+<body>${renderNavigation("/signal/" + encounter.cycle + "/" + encounter.entropy, "plain")}
+<div class="au-terminal-output">${escapeHTML(archiveText)}</div>
 <script>
 (function () {
 
@@ -180,18 +188,28 @@ html, body {
     color: #8cff8c;
     font-family: Consolas, "Courier New", monospace;
     font-size: 13px;
-    white-space: pre-wrap;
 }
-body {
+
+.au-terminal-output {
+    margin: 0;
     padding: 18px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
+
+${navigationCSS()}
 </style>
 </head>
-<body>AU-B001
+<body>${renderNavigation("/", "plain")}
+<div class="au-terminal-output">AU-B001
+
 STATUS: INITIAL CONTACT RECORDED
+
 CYCLE: ${encounter.cycle}
+
 PROBE: ATTEMPTING BROWSER DISCLOSURE
-SIGNAL: STANDBY</body>
+
+SIGNAL: STANDBY</div>
 
 <script>
 (function () {
@@ -251,6 +269,8 @@ SIGNAL: STANDBY</body>
 
 })();
 </script>
+
+</body>
 </html>`;
 
 }
