@@ -9538,5 +9538,84 @@
     "presence": "ENTITY REQUESTED THE MAP / DEPARTURE NOT CONFIRMED",
     "disclosure": "EDGE",
     "message": "SIGNAL PERSISTS"
+  },
+  {
+    "beacon": "AU-B001",
+    "status": "EDGE PROBE RECEIVED",
+    "cycle": 386,
+    "utc": "2026-06-16T08:30:18.707Z",
+    "entropy": "aa44f9272391e82011d7842f9c8b9f49",
+    "origin": "52.167.144.54",
+    "hostname": "UNKNOWN",
+    "blueprint": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36",
+    "terminal": {
+      "os": "UNKNOWN",
+      "browser": "CLOUDFLARE WORKER",
+      "browser_version": "EDGE",
+      "device": "EDGE",
+      "app": "ROBOTS_TXT_PROBE",
+      "app_version": "UNKNOWN"
+    },
+    "source": "CLOUDFLARE_EDGE_PROBE",
+    "referrer": "NONE",
+    "language": "UNKNOWN",
+    "client_hints": {
+      "ua": "UNKNOWN",
+      "platform": "UNKNOWN",
+      "mobile": "UNKNOWN",
+      "model": "UNKNOWN"
+    },
+    "terminal_entropy": "da96b0a79a2dc71d587a1d32",
+    "returning_entity": false,
+    "previous_terminal_encounters": 0,
+    "entity": "BINGBOT",
+    "detection": "ENTITY REQUESTED THE MAP",
+    "headers": {
+      "user-agent": "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) Chrome/116.0.1938.76 Safari/537.36",
+      "accept": "*/*",
+      "accept-language": "UNKNOWN",
+      "referer": "NONE",
+      "cf-ray": "a0c87a05e87fd095"
+    },
+    "edge_probe": {
+      "status": "EDGE_SIGNAL_RECEIVED",
+      "event": "ROBOTS_TXT_REQUEST",
+      "method": "GET",
+      "path": "/robots.txt",
+      "query": "",
+      "accept": "*/*",
+      "cf_ray": "a0c87a05e87fd095",
+      "cf": {
+        "colo": "IAD",
+        "country": "US",
+        "region": "Virginia",
+        "city": "Boydton",
+        "timezone": "America/New_York",
+        "asn": 8075,
+        "asOrganization": "Microsoft Corporation",
+        "httpProtocol": "HTTP/2",
+        "tlsVersion": "TLSv1.3"
+      },
+      "received_utc": "2026-06-16T08:30:18.707Z"
+    },
+    "browser_probe": {
+      "status": "NO_BROWSER_SIGNAL_YET",
+      "last_event": "robots_txt_request",
+      "mode": "CLOUDFLARE_EDGE_PROBE",
+      "timezone": "America/New_York",
+      "screen": "UNKNOWN",
+      "viewport": "UNKNOWN",
+      "pixel_ratio": "UNKNOWN",
+      "theme": "UNKNOWN",
+      "cores": "UNKNOWN",
+      "memory_gb": "UNKNOWN",
+      "touch_points": "UNKNOWN",
+      "network_type": "UNKNOWN",
+      "save_data": "UNKNOWN",
+      "dwell_seconds": 0
+    },
+    "presence": "ENTITY REQUESTED THE MAP / DEPARTURE NOT CONFIRMED",
+    "disclosure": "EDGE",
+    "message": "SIGNAL PERSISTS"
   }
 ]
