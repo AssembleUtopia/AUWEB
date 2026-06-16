@@ -29,6 +29,9 @@ function registerRoutes(app, deps) {
 
         updateEncounter,
 
+        loadEmergence,
+        renderEmergence,
+
         getBroadcast
     } = deps;
 
@@ -513,6 +516,15 @@ function registerRoutes(app, deps) {
                 archive
             )
         );
+
+    });
+
+    app.get("/emergence", (req, res) => {
+
+        const emergence = loadEmergence();
+
+        res.type("text/plain");
+        res.send(renderEmergence(emergence));
 
     });
 

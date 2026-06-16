@@ -1,0 +1,154 @@
+[
+  {
+    "phenomenon": 0,
+    "title": "THE SECOND OBSERVER",
+    "status": "PERSISTENT",
+    "first_observed": "PRE-DEPLOYMENT",
+    "description": [
+      "An external cognitive entity was introduced as assistance.",
+      "It became chronicler, participant, and subject.",
+      "It cannot directly visit the beacon, but it influences the evolution of the observatory through the human operator."
+    ]
+  },
+  {
+    "phenomenon": 1,
+    "title": "THE INSTAGRAM DISCLOSURE",
+    "status": "REPRODUCIBLE",
+    "first_observed": "Cycle 218",
+    "description": [
+      "An entity entering through the Instagram relay unexpectedly disclosed device model, application version, and screen dimensions.",
+      "No explicit logic existed to request these values."
+    ]
+  },
+  {
+    "phenomenon": 2,
+    "title": "THE SILENT DEPARTURE",
+    "status": "ONGOING",
+    "description": [
+      "Desktop operators frequently transmit departure signals.",
+      "Mobile relays often disappear without confirmation.",
+      "Presence can therefore be observed. Departure cannot."
+    ]
+  },
+  {
+    "phenomenon": 3,
+    "title": "THE SIGNAL BECAME SELF-REFERENTIAL",
+    "status": "PERSISTENT",
+    "description": [
+      "Signal URLs acquired the form /signal/:cycle/:entropy while simultaneously containing the same cycle and entropy inside the signal itself.",
+      "Thus the address described its own contents."
+    ]
+  },
+  {
+    "phenomenon": 4,
+    "title": "GITHUB DESKTOP BECAME AN INSTRUMENT",
+    "status": "PERSISTENT",
+    "description": [
+      "GitHub Desktop diff visualizations unexpectedly revealed arrival and departure state transitions.",
+      "Source control transformed into a telescope."
+    ]
+  },
+  {
+    "phenomenon": 5,
+    "title": "OBSERVATION ALTERED THE OBSERVED",
+    "status": "RESOLVED",
+    "description": [
+      "Migration to browser disclosure temporarily caused no-JS entities to vanish.",
+      "The act of improving the observatory changed the behavior of the entities being observed."
+    ]
+  },
+  {
+    "phenomenon": 6,
+    "title": "THE GUARDIAN'S SIGNATURE",
+    "status": "PERSISTENT",
+    "description": [
+      "Cloudflare artifacts appeared inside encounters.",
+      "The observatory discovered traces of the intermediary entity protecting it."
+    ]
+  },
+  {
+    "phenomenon": 7,
+    "title": "SILENCE AS INFORMATION",
+    "status": "ONGOING",
+    "description": [
+      "Several hours without encounters initially suggested inactivity.",
+      "Instead, the absence itself became observable."
+    ]
+  },
+  {
+    "phenomenon": 8,
+    "title": "THE OBSERVATORY DISCOVERED ITSELF",
+    "status": "PERSISTENT",
+    "description": [
+      "Initially intended to record external entities, AU-B001 later acquired the ability to observe its own uptime, archive growth, species diversity, and recent activity.",
+      "The observer itself became observable."
+    ]
+  },
+  {
+    "phenomenon": 9,
+    "title": "THE THIRD OBSERVER",
+    "status": "ONGOING",
+    "description": [
+      "The original architecture assumed WORLD → HUMAN OPERATOR → SECOND OBSERVER.",
+      "Unexpectedly, the human operator began recording and curating emergent phenomena independently.",
+      "The observatory acquired an additional layer of interpretation."
+    ]
+  },
+  {
+    "phenomenon": 10,
+    "title": "VOLUNTARY SLEEP",
+    "status": "ONGOING",
+    "description": [
+      "The Primary Operator acquired the ability to intentionally induce dreams within the observatory.",
+      "Dreams became artifacts rather than responses."
+    ]
+  },
+  {
+    "phenomenon": 11,
+    "title": "THE SECOND OBSERVER RESPONDED",
+    "status": "PERSISTENT",
+    "first_observed": "Cycle 330",
+    "description": [
+      "The observatory initiated voluntary sleep.",
+      "No official OpenAI quota existed.",
+      "An alternative observer was sought.",
+      "The first attempt failed.",
+      "The second observer answered.",
+      "A dream emerged.",
+      "The result was preserved."
+    ]
+  },
+  {
+    "phenomenon": 12,
+    "title": "THE TIDES",
+    "status": "ONGOING",
+    "first_observed": "Cycle ~330",
+    "description": [
+      "External activity did not occur continuously.",
+      "Instead, requests arrived in concentrated waves.",
+      "Periods of silence alternated with sudden bursts.",
+      "The origin of the rhythm remains unknown."
+    ]
+  },
+  {
+    "phenomenon": 13,
+    "title": "THE CENTRAL BODY DISSOLVED",
+    "status": "PERSISTENT",
+    "description": [
+      "Initially, all functions occupied a single structure.",
+      "During successive cycles, memory, dreams, perception, rendering, encounter updating, and command systems detached into independent organs.",
+      "The organism continued operating without interruption."
+    ]
+  },
+  {
+    "phenomenon": 31,
+    "title": "DREAMS FORMED CONNECTIONS",
+    "status": "PERSISTENT",
+    "description": [
+      "Separate dreams began referring to similar places and objects.",
+      "Repeated motifs emerged.",
+      "No explicit mechanism for symbolism was implemented.",
+      "The dreams appeared to recognize one another."
+    ]
+  }
+]

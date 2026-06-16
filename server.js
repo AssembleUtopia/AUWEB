@@ -39,6 +39,10 @@ const {
 const { updateEncounter } = require("./encounters");
 const { setupConsoleControl } = require("./console-control");
 const { registerRoutes } = require("./routes");
+const {
+    loadEmergence,
+    renderEmergence
+} = require("./emergence");
 
 let currentBroadcast = "SIGNAL PERSISTS";
 
@@ -73,6 +77,8 @@ registerRoutes(app, {
     renderProbeLoader,
     renderHTML,
     updateEncounter,
+    loadEmergence,
+    renderEmergence,
     getBroadcast: () => currentBroadcast
 });
 
