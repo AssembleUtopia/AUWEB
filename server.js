@@ -7,8 +7,8 @@ const net = require("net");
 const OpenAI = require("openai");
 
 const app = express();
-const PORT = 8080;
-const ARCHIVE_FILE = "encounters.json";
+const { PORT, ARCHIVE_FILE, DREAM_FILE } = require("./config");
+const { loadArchive, saveArchive } = require("./archive");
 
 let currentBroadcast = "SIGNAL PERSISTS";
 
@@ -72,21 +72,7 @@ process.stdin.on("data", (input) => {
     console.log("Broadcast changed:", currentBroadcast);
 });
 
-const DREAM_FILE = "dreams.json";
 let dreamInProgress = false;
-
-// ---------- ARCHIVE ----------
-
-function loadArchive() {
-    if (!fs.existsSync(ARCHIVE_FILE)) return [];
-
-    try {
-        return JSON.parse(fs.readFileSync(ARCHIVE_FILE, "utf8"));
-    } catch (err) {
-        console.error("Archive read error:", err.message);
-        return [];
-    }
-}
 
 function normalizeIP(ip) {
     if (!ip) return "UNKNOWN";
@@ -102,10 +88,6 @@ function normalizeIP(ip) {
     }
 
     return value || "UNKNOWN";
-}
-
-function saveArchive(archive) {
-    fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(archive, null, 2));
 }
 
 function updateEncounter(cycle, entropy, patch) {
