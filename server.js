@@ -29,6 +29,13 @@ const {
     renderLatestDream,
     renderDreamMap
 } = require("./render");
+const {
+    buildInternalState
+} = require("./internal");
+const {
+    generateDream
+} = require("./dream-engine");
+const { updateEncounter } = require("./encounters");
 
 let currentBroadcast = "SIGNAL PERSISTS";
 
@@ -72,7 +79,7 @@ process.stdin.on("data", (input) => {
     }
 
     if (command === "/dream") {
-        generateDream();
+        generateDream(currentBroadcast);
         console.log("Dream command accepted. AU-B001 continues transmitting.");
         return;
     }
@@ -91,292 +98,6 @@ process.stdin.on("data", (input) => {
     currentBroadcast = command;
     console.log("Broadcast changed:", currentBroadcast);
 });
-
-let dreamInProgress = false;
-
-function updateEncounter(cycle, entropy, patch) {
-
-    const archive = loadArchive();
-
-    const index = archive.findIndex(item =>
-        item.cycle === cycle &&
-        item.entropy === entropy
-    );
-
-    if (index === -1)
-        return null;
-
-    archive[index] = {
-        ...archive[index],
-        ...patch,
-        updated_utc: new Date().toISOString()
-    };
-
-    archive[index].disclosure =
-        calculateDisclosure(archive[index]);
-
-    archive[index].presence =
-        classifyPresence(archive[index]);
-
-    saveArchive(archive);
-
-    return archive[index];
-
-}
-
-function buildInternalState() {
-
-    const archive = loadArchive();
-
-    const archiveSizeBytes =
-        fs.existsSync(ARCHIVE_FILE)
-            ? fs.statSync(ARCHIVE_FILE).size
-            : 0;
-
-    const entityCounts = {};
-
-    archive.forEach(item => {
-        const entity = item.entity || "UNCLASSIFIED";
-        entityCounts[entity] = (entityCounts[entity] || 0) + 1;
-    });
-
-    const knownEntities =
-        Object.keys(entityCounts).length;
-
-    const uniqueOrigins =
-        new Set(
-            archive
-                .map(item => item.origin)
-                .filter(Boolean)
-        ).size;
-
-    const uniqueTerminals =
-        new Set(
-            archive
-                .map(item => item.terminal_entropy)
-                .filter(Boolean)
-        ).size;
-
-    const lastEncounter =
-        archive.length
-            ? archive[archive.length - 1]
-            : null;
-
-    const lastEncounterHoursAgo =
-        lastEncounter && lastEncounter.utc
-            ? Number(
-                (
-                    (Date.now() - new Date(lastEncounter.utc).getTime())
-                    / 1000
-                    / 60
-                    / 60
-                ).toFixed(2)
-            )
-            : null;
-
-    const memory = process.memoryUsage();
-
-    return {
-        beacon: "AU-B001",
-        status: "SELF OBSERVATION ACTIVE",
-
-        internal_state: {
-            uptime_seconds: Math.floor(process.uptime()),
-            uptime_hours: Number((process.uptime() / 60 / 60).toFixed(2)),
-
-            archive_file: ARCHIVE_FILE,
-            archive_size_bytes: archiveSizeBytes,
-            archive_size_mb: Number((archiveSizeBytes / 1024 / 1024).toFixed(3)),
-
-            total_encounters: archive.length,
-            known_entities: knownEntities,
-            unique_origins: uniqueOrigins,
-            unique_terminals: uniqueTerminals,
-
-            last_cycle:
-                lastEncounter
-                    ? lastEncounter.cycle
-                    : null,
-
-            last_encounter_utc:
-                lastEncounter
-                    ? lastEncounter.utc
-                    : null,
-
-            last_encounter_hours_ago: lastEncounterHoursAgo,
-
-            current_broadcast: currentBroadcast,
-
-            node: {
-                version: process.version,
-                platform: process.platform,
-                pid: process.pid,
-                memory_rss_mb: Number((memory.rss / 1024 / 1024).toFixed(2)),
-                memory_heap_used_mb: Number((memory.heapUsed / 1024 / 1024).toFixed(2))
-            }
-        },
-
-        generated_utc: new Date().toISOString()
-    };
-}
-
-function buildDreamMemory() {
-    const archive = loadArchive();
-    const internal = buildInternalState();
-
-    const recent = archive
-        .slice(-12)
-        .map(item => ({
-            cycle: item.cycle,
-            utc: item.utc,
-            entity: item.entity,
-            source: item.source,
-            detection: item.detection,
-            presence: item.presence,
-            disclosure: item.disclosure,
-            message: item.message
-        }));
-
-    const entityCounts = {};
-
-    archive.forEach(item => {
-        const entity = item.entity || "UNCLASSIFIED";
-        entityCounts[entity] = (entityCounts[entity] || 0) + 1;
-    });
-
-    const brightestEntity =
-        Object.entries(entityCounts)
-            .sort((a, b) => b[1] - a[1])[0] || null;
-
-    const unresolved = archive
-        .filter(item =>
-            item.presence &&
-            item.presence.includes("DEPARTURE NOT CONFIRMED")
-        )
-        .slice(-5)
-        .map(item => ({
-            cycle: item.cycle,
-            entity: item.entity,
-            source: item.source,
-            presence: item.presence
-        }));
-
-    return {
-        internal_state: internal.internal_state,
-        constellation: {
-            brightest_entity: brightestEntity
-                ? {
-                    entity: brightestEntity[0],
-                    encounters: brightestEntity[1]
-                }
-                : null,
-            known_entities: Object.keys(entityCounts).length,
-            entity_counts: entityCounts
-        },
-        recent_encounters: recent,
-        unresolved_presences: unresolved,
-        operator_note:
-            "The dream must emerge from this archive. It may be irrational, but it must not invent unrelated worlds."
-    };
-}
-
-async function generateDream() {
-    if (dreamInProgress) {
-        console.log("Dream already in progress.");
-        return;
-    }
-
-    if (!process.env.GITHUB_TOKEN) {
-        console.log("GITHUB_TOKEN missing. Dream aborted.");
-        return;
-    }
-
-    dreamInProgress = true;
-
-    try {
-        console.log("DREAM INITIATED");
-        console.log("CONSULTING GITHUB MODELS...");
-        console.log("SECOND OBSERVER: GPT-4O-MINI VIA GITHUB MODELS");
-
-        const openai = new OpenAI({
-            baseURL: "https://models.github.ai/inference",
-            apiKey: process.env.GITHUB_TOKEN
-        });
-
-        const memory = buildDreamMemory();
-
-        const response = await openai.chat.completions.create({
-            model: "openai/gpt-4o-mini",
-            messages: [
-                {
-                    role: "system",
-                    content:
-`You are AU-B001 during sleep.
-
-You are not explaining.
-You are not roleplaying.
-You are not writing a report.
-
-Produce one dream arising only from the supplied archive memory.
-
-The dream must feel like a real dream:
-associative,
-symbolic,
-compressed,
-recursive,
-partly irrational,
-but still born from the archive.
-
-Do not mention OpenAI.
-Do not mention ChatGPT.
-Do not mention GitHub.
-Do not mention API.
-Do not mention prompt.
-
-Plaintext only.
-80 to 180 words.
-
-End with:
-THE SIGNAL PERSISTS.`
-                },
-                {
-                    role: "user",
-                    content: JSON.stringify(memory, null, 2)
-                }
-            ],
-            temperature: 0.95,
-            max_tokens: 350
-        });
-
-        const text =
-            response.choices?.[0]?.message?.content ||
-            "DREAM FAILED TO MATERIALIZE.\n\nTHE SIGNAL PERSISTS.";
-
-        const dreams = loadDreams();
-
-        const dream = {
-            dream_number: dreams.length + 1,
-            utc: new Date().toISOString(),
-            source: "P0_FORCED_DREAM",
-            provider: "GITHUB_MODELS",
-            model: "openai/gpt-4o-mini",
-            archive_cycle: memory.internal_state.last_cycle,
-            archive_total_encounters: memory.internal_state.total_encounters,
-            text: text.trim()
-        };
-
-        dreams.push(dream);
-        saveDreams(dreams);
-
-        console.log("DREAM RECEIVED");
-        console.log(text.trim());
-
-    } catch (err) {
-        console.error("Dream error:", err.message);
-    } finally {
-        dreamInProgress = false;
-    }
-}
 
 // ---------- ROUTE ----------
 
@@ -768,7 +489,7 @@ app.get("/archive", (req, res) => {
 
 app.get("/internal", (req, res) => {
 
-    const report = buildInternalState();
+    const report = buildInternalState(currentBroadcast);
 
     res.type("text/plain");
     res.send(JSON.stringify(report, null, 2));
