@@ -36,67 +36,19 @@ const {
     generateDream
 } = require("./dream-engine");
 const { updateEncounter } = require("./encounters");
+const { setupConsoleControl } = require("./console-control");
 
 let currentBroadcast = "SIGNAL PERSISTS";
 
 app.use(express.json({ limit: "64kb" }));
 
-// ---------- TERMINAL CONTROL ----------
-
-process.stdin.setEncoding("utf8");
-
-process.stdin.on("data", (input) => {
-    const command = input.trim();
-
-    if (!command) return;
-
-    if (command === "/clear") {
-        currentBroadcast = "SIGNAL PERSISTS";
-        console.log("Broadcast reset: SIGNAL PERSISTS");
-        return;
-    }
-
-    if (command === "/status") {
-        const archive = loadArchive();
-        console.log("AU-B001 STATUS");
-        console.log("Broadcast:", currentBroadcast);
-        console.log("Total encounters:", archive.length);
-        return;
-    }
-
-    if (command === "/recent") {
-        const archive = loadArchive();
-        const recent = archive.slice(-5).reverse();
-
-        console.log("RECENT MESOGRAMS");
-        recent.forEach(item => {
-            console.log(
-                `#${item.cycle} | ${item.origin || "UNKNOWN"} | ${item.entity || "UNCLASSIFIED"} | ${item.message}`
-            );
-        });
-
-        return;
-    }
-
-    if (command === "/dream") {
-        generateDream(currentBroadcast);
-        console.log("Dream command accepted. AU-B001 continues transmitting.");
-        return;
-    }
-
-    if (command === "/help") {
-        console.log("AU-B001 COMMANDS");
-        console.log("/clear   reset broadcast");
-        console.log("/status  show current state");
-        console.log("/recent  show last 5 mesograms");
-        console.log("/help    show commands");
-        console.log("/dream   force one dream from archive memory");
-        console.log("Any other text becomes broadcast.");
-        return;
-    }
-
-    currentBroadcast = command;
-    console.log("Broadcast changed:", currentBroadcast);
+setupConsoleControl({
+    getBroadcast: () => currentBroadcast,
+    setBroadcast: (value) => {
+        currentBroadcast = value;
+    },
+    loadArchive,
+    generateDream
 });
 
 // ---------- ROUTE ----------
