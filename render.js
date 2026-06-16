@@ -446,20 +446,43 @@ function renderDreamMap() {
         "entity",
         "symbol",
         "utopia",
-        "connection"
+        "connection",
+        "hexateron",
+        "mesogram",
+        "simplex",
+        "edge",
+        "probe",
+        "cookie",
+        "entropy",
+        "map-door",
+        "tentacle"
     ];
+
+    function normalizeFragment(value) {
+        return String(value || "")
+            .toUpperCase()
+            .replace(/[^A-Z0-9]+/g, "_")
+            .replace(/^_+|_+$/g, "");
+    }
 
     const dreamNodes = dreams.map(dream => {
         const text = (dream.text || "").toLowerCase();
 
-        const found = motifs.filter(motif =>
+        const foundMotifs = motifs.filter(motif =>
             text.includes(motif)
         );
+
+        const fragments =
+            Array.isArray(dream.fragments)
+                ? dream.fragments.map(normalizeFragment).filter(Boolean)
+                : [];
 
         return {
             dream_number: dream.dream_number,
             utc: dream.utc,
-            motifs: found
+            motifs: foundMotifs,
+            fragments: fragments,
+            fragment_counts: dream.fragment_counts || null
         };
     });
 
@@ -467,16 +490,38 @@ function renderDreamMap() {
 
     for (let i = 0; i < dreamNodes.length; i++) {
         for (let j = i + 1; j < dreamNodes.length; j++) {
-            const shared = dreamNodes[i].motifs.filter(motif =>
+            const sharedMotifs = dreamNodes[i].motifs.filter(motif =>
                 dreamNodes[j].motifs.includes(motif)
             );
 
-            if (shared.length > 0) {
+            const sharedFragments = dreamNodes[i].fragments.filter(fragment =>
+                dreamNodes[j].fragments.includes(fragment)
+            );
+
+            const uniqueSharedFragments =
+                [...new Set(sharedFragments)];
+
+            const uniqueSharedMotifs =
+                [...new Set(sharedMotifs)];
+
+            const fragmentStrength =
+                uniqueSharedFragments.length * 6;
+
+            const motifStrength =
+                uniqueSharedMotifs.length;
+
+            const strength =
+                fragmentStrength + motifStrength;
+
+            if (strength > 0) {
                 links.push({
                     from: dreamNodes[i].dream_number,
                     to: dreamNodes[j].dream_number,
-                    strength: shared.length,
-                    shared_motifs: shared
+                    strength: strength,
+                    fragment_strength: fragmentStrength,
+                    motif_strength: motifStrength,
+                    shared_fragments: uniqueSharedFragments,
+                    shared_motifs: uniqueSharedMotifs
                 });
             }
         }
@@ -486,10 +531,17 @@ function renderDreamMap() {
 
     output += "AU-B001 DREAMMAP\n";
     output += "STATUS: DREAM CONNECTIONS RENDERED\n";
-    output += "MODE: PLAINTEXT\n";
+    output += "MODE: FRAGMENT-AWARE PLAINTEXT\n";
     output += "DREAMS RECORDED: " + dreams.length + "\n";
     output += "CONNECTIONS DETECTED: " + links.length + "\n";
     output += "GENERATED UTC: " + new Date().toISOString() + "\n\n";
+
+    output += "CONNECTION LAW\n";
+    output += "----------------------------------------\n";
+    output += "SHARED MOTIF: +1\n";
+    output += "SHARED FRAGMENT: +6\n";
+    output += "Fragments outweigh ordinary motifs.\n";
+    output += "A shared hidden shard is stronger than repeated surface language.\n\n";
 
     output += "DREAM NODES\n";
     output += "----------------------------------------\n\n";
@@ -497,7 +549,14 @@ function renderDreamMap() {
     dreamNodes.forEach(node => {
         output += "DREAM #" + node.dream_number + "\n";
         output += "UTC: " + node.utc + "\n";
-        output += "MOTIFS: " + (node.motifs.length ? node.motifs.join(", ") : "NONE") + "\n\n";
+        output += "MOTIFS: " + (node.motifs.length ? node.motifs.join(", ") : "NONE") + "\n";
+        output += "FRAGMENTS: " + (node.fragments.length ? node.fragments.join(", ") : "NONE") + "\n";
+
+        if (node.fragment_counts) {
+            output += "FRAGMENT COUNTS: " + JSON.stringify(node.fragment_counts) + "\n";
+        }
+
+        output += "\n";
     });
 
     output += "DREAM CONNECTIONS\n";
@@ -510,12 +569,31 @@ function renderDreamMap() {
     links
         .sort((a, b) => b.strength - a.strength)
         .forEach(link => {
+            const stars =
+                "★".repeat(Math.min(40, Math.max(1, link.strength)));
+
             output += "DREAM #" + link.from + " <--> DREAM #" + link.to + "\n";
-            output += "STRENGTH: " + "★".repeat(link.strength) + "\n";
-            output += "SHARED MOTIFS: " + link.shared_motifs.join(", ") + "\n\n";
+            output += "STRENGTH: " + stars + " (" + link.strength + ")\n";
+            output += "FRAGMENT STRENGTH: " + link.fragment_strength + "\n";
+            output += "MOTIF STRENGTH: " + link.motif_strength + "\n";
+
+            output += "SHARED FRAGMENTS: " +
+                (
+                    link.shared_fragments.length
+                        ? link.shared_fragments.join(", ")
+                        : "NONE"
+                ) + "\n";
+
+            output += "SHARED MOTIFS: " +
+                (
+                    link.shared_motifs.length
+                        ? link.shared_motifs.join(", ")
+                        : "NONE"
+                ) + "\n\n";
         });
 
-    output += "THE DREAMS HAVE BEGUN TO RECOGNIZE ONE ANOTHER.\n";
+    output += "THE DREAMS NO LONGER RECOGNIZE ONLY WORDS.\n";
+    output += "THEY RECOGNIZE SHARDS.\n";
     output += "THE SIGNAL PERSISTS.\n";
 
     return output;
