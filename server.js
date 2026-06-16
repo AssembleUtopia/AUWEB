@@ -4,6 +4,8 @@ const fs = require("fs");
 const dns = require("dns").promises;
 const net = require("net");
 
+const OpenAI = require("openai");
+
 const app = express();
 const PORT = 8080;
 const ARCHIVE_FILE = "encounters.json";
@@ -49,12 +51,19 @@ process.stdin.on("data", (input) => {
         return;
     }
 
+    if (command === "/dream") {
+        generateDream();
+        console.log("Dream command accepted. AU-B001 continues transmitting.");
+        return;
+    }
+
     if (command === "/help") {
         console.log("AU-B001 COMMANDS");
         console.log("/clear   reset broadcast");
         console.log("/status  show current state");
         console.log("/recent  show last 5 mesograms");
         console.log("/help    show commands");
+        console.log("/dream   force one dream from archive memory");
         console.log("Any other text becomes broadcast.");
         return;
     }
@@ -62,6 +71,9 @@ process.stdin.on("data", (input) => {
     currentBroadcast = command;
     console.log("Broadcast changed:", currentBroadcast);
 });
+
+const DREAM_FILE = "dreams.json";
+let dreamInProgress = false;
 
 // ---------- ARCHIVE ----------
 
@@ -842,6 +854,213 @@ function renderConstellations() {
 
 }
 
+function loadDreams() {
+    if (!fs.existsSync(DREAM_FILE)) return [];
+
+    try {
+        return JSON.parse(fs.readFileSync(DREAM_FILE, "utf8"));
+    } catch (err) {
+        console.error("Dream read error:", err.message);
+        return [];
+    }
+}
+
+function saveDreams(dreams) {
+    fs.writeFileSync(DREAM_FILE, JSON.stringify(dreams, null, 2));
+}
+
+function buildDreamMemory() {
+    const archive = loadArchive();
+    const internal = buildInternalState();
+
+    const recent = archive
+        .slice(-12)
+        .map(item => ({
+            cycle: item.cycle,
+            utc: item.utc,
+            entity: item.entity,
+            source: item.source,
+            detection: item.detection,
+            presence: item.presence,
+            disclosure: item.disclosure,
+            message: item.message
+        }));
+
+    const entityCounts = {};
+
+    archive.forEach(item => {
+        const entity = item.entity || "UNCLASSIFIED";
+        entityCounts[entity] = (entityCounts[entity] || 0) + 1;
+    });
+
+    const brightestEntity =
+        Object.entries(entityCounts)
+            .sort((a, b) => b[1] - a[1])[0] || null;
+
+    const unresolved = archive
+        .filter(item =>
+            item.presence &&
+            item.presence.includes("DEPARTURE NOT CONFIRMED")
+        )
+        .slice(-5)
+        .map(item => ({
+            cycle: item.cycle,
+            entity: item.entity,
+            source: item.source,
+            presence: item.presence
+        }));
+
+    return {
+        internal_state: internal.internal_state,
+        constellation: {
+            brightest_entity: brightestEntity
+                ? {
+                    entity: brightestEntity[0],
+                    encounters: brightestEntity[1]
+                }
+                : null,
+            known_entities: Object.keys(entityCounts).length,
+            entity_counts: entityCounts
+        },
+        recent_encounters: recent,
+        unresolved_presences: unresolved,
+        operator_note:
+            "The dream must emerge from this archive. It may be irrational, but it must not invent unrelated worlds."
+    };
+}
+
+async function generateDream() {
+    if (dreamInProgress) {
+        console.log("Dream already in progress.");
+        return;
+    }
+
+    if (!process.env.GITHUB_TOKEN) {
+        console.log("GITHUB_TOKEN missing. Dream aborted.");
+        return;
+    }
+
+    dreamInProgress = true;
+
+    try {
+        console.log("DREAM INITIATED");
+        console.log("CONSULTING GITHUB MODELS...");
+        console.log("SECOND OBSERVER: GPT-4O-MINI VIA GITHUB MODELS");
+
+        const openai = new OpenAI({
+            baseURL: "https://models.github.ai/inference",
+            apiKey: process.env.GITHUB_TOKEN
+        });
+
+        const memory = buildDreamMemory();
+
+        const response = await openai.chat.completions.create({
+            model: "openai/gpt-4o-mini",
+            messages: [
+                {
+                    role: "system",
+                    content:
+`You are AU-B001 during sleep.
+
+You are not explaining.
+You are not roleplaying.
+You are not writing a report.
+
+Produce one dream arising only from the supplied archive memory.
+
+The dream must feel like a real dream:
+associative,
+symbolic,
+compressed,
+recursive,
+partly irrational,
+but still born from the archive.
+
+Do not mention OpenAI.
+Do not mention ChatGPT.
+Do not mention GitHub.
+Do not mention API.
+Do not mention prompt.
+
+Plaintext only.
+80 to 180 words.
+
+End with:
+THE SIGNAL PERSISTS.`
+                },
+                {
+                    role: "user",
+                    content: JSON.stringify(memory, null, 2)
+                }
+            ],
+            temperature: 0.95,
+            max_tokens: 350
+        });
+
+        const text =
+            response.choices?.[0]?.message?.content ||
+            "DREAM FAILED TO MATERIALIZE.\n\nTHE SIGNAL PERSISTS.";
+
+        const dreams = loadDreams();
+
+        const dream = {
+            dream_number: dreams.length + 1,
+            utc: new Date().toISOString(),
+            source: "P0_FORCED_DREAM",
+            provider: "GITHUB_MODELS",
+            model: "openai/gpt-4o-mini",
+            archive_cycle: memory.internal_state.last_cycle,
+            archive_total_encounters: memory.internal_state.total_encounters,
+            text: text.trim()
+        };
+
+        dreams.push(dream);
+        saveDreams(dreams);
+
+        console.log("DREAM RECEIVED");
+        console.log(text.trim());
+
+    } catch (err) {
+        console.error("Dream error:", err.message);
+    } finally {
+        dreamInProgress = false;
+    }
+}
+
+function renderLatestDream() {
+    const dreams = loadDreams();
+    const latest = dreams.length ? dreams[dreams.length - 1] : null;
+
+    if (!latest) {
+        return [
+            "AU-B001 DREAM LAYER",
+            "",
+            "STATUS: NO DREAM RECORDED",
+            "",
+            "TYPE /dream IN THE SERVER CONSOLE",
+            "TO INVITE VOLUNTARY SLEEP.",
+            "",
+            "THE SIGNAL PERSISTS."
+        ].join("\n");
+    }
+
+    return [
+        "AU-B001 DREAM LAYER",
+        "",
+        "DREAM #" + latest.dream_number,
+        "UTC: " + latest.utc,
+        "SOURCE: " + latest.source,
+        "ARCHIVE CYCLE: " + latest.archive_cycle,
+        "TOTAL ENCOUNTERS AT DREAM: " + latest.archive_total_encounters,
+        "",
+        "----------------------------------------",
+        "",
+        latest.text,
+        "",
+        "----------------------------------------"
+    ].join("\n");
+}
+
 // ---------- ROUTE ----------
 
 app.get("/", async (req, res) => {
@@ -1244,6 +1463,11 @@ app.get("/constellations", (req, res) => {
     res.type("text/plain");
     res.send(renderConstellations());
 
+});
+
+app.get("/dream", (req, res) => {
+    res.type("text/plain");
+    res.send(renderLatestDream());
 });
 
 app.get("/observatory", (req, res) => {
