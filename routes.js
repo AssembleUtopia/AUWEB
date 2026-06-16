@@ -276,6 +276,125 @@ function registerRoutes(app, deps) {
 
     });
 
+        app.post("/edge-probe", async (req, res) => {
+        const archive = loadArchive();
+        const body = req.body || {};
+        const headers = req.headers || {};
+
+        const userBlueprint =
+            body.user_agent ||
+            headers["user-agent"] ||
+            "UNKNOWN EDGE ENTITY";
+
+        const visitorIP = normalizeIP(
+            body.cf_connecting_ip ||
+            headers["cf-connecting-ip"] ||
+            headers["x-forwarded-for"] ||
+            req.socket.remoteAddress ||
+            "UNKNOWN"
+        );
+
+        const hostname = await reverseDNS(visitorIP);
+
+        const terminalEntropy = hashTerminal([
+            "CLOUDFLARE_EDGE_PROBE",
+            visitorIP,
+            userBlueprint,
+            body.path || "UNKNOWN_PATH",
+            body.cf?.colo || "UNKNOWN_COLO",
+            body.cf?.asn || "UNKNOWN_ASN"
+        ].join("|"));
+
+        const previousTerminalEncounters = archive.filter(item =>
+            item.terminal_entropy === terminalEntropy
+        );
+
+        const entropy = crypto.randomBytes(16).toString("hex");
+
+        const encounter = {
+            beacon: "AU-B001",
+            status: "EDGE PROBE RECEIVED",
+            cycle: archive.length + 1,
+            utc: new Date().toISOString(),
+            entropy: entropy,
+
+            origin: visitorIP,
+            hostname: hostname,
+            blueprint: userBlueprint,
+
+            terminal: {
+                os: "UNKNOWN",
+                browser: "CLOUDFLARE WORKER",
+                browser_version: "EDGE",
+                device: "EDGE",
+                app: "ROBOTS_TXT_PROBE",
+                app_version: "UNKNOWN"
+            },
+
+            source: "CLOUDFLARE_EDGE_PROBE",
+            referrer: body.referer || "NONE",
+            language: body.accept_language || "UNKNOWN",
+
+            client_hints: {
+                ua: "UNKNOWN",
+                platform: "UNKNOWN",
+                mobile: "UNKNOWN",
+                model: "UNKNOWN"
+            },
+
+            terminal_entropy: terminalEntropy,
+            returning_entity: previousTerminalEncounters.length > 0,
+            previous_terminal_encounters: previousTerminalEncounters.length,
+
+            entity: body.possible_entity || "EDGE_ROBOTS_REQUEST",
+            detection: "ENTITY REQUESTED THE MAP",
+
+            headers: body.headers || {},
+
+            edge_probe: {
+                status: "EDGE_SIGNAL_RECEIVED",
+                event: body.event || "ROBOTS_TXT_REQUEST",
+                method: body.method || "UNKNOWN",
+                path: body.path || "UNKNOWN",
+                query: body.query || "",
+                accept: body.accept || "UNKNOWN",
+                cf_ray: body.cf_ray || "UNKNOWN",
+                cf: body.cf || {},
+                received_utc: new Date().toISOString()
+            },
+
+            browser_probe: {
+                status: "NO_BROWSER_SIGNAL_YET",
+                last_event: "robots_txt_request",
+                mode: "CLOUDFLARE_EDGE_PROBE",
+                timezone: body.cf?.timezone || "UNKNOWN",
+                screen: "UNKNOWN",
+                viewport: "UNKNOWN",
+                pixel_ratio: "UNKNOWN",
+                theme: "UNKNOWN",
+                cores: "UNKNOWN",
+                memory_gb: "UNKNOWN",
+                touch_points: "UNKNOWN",
+                network_type: "UNKNOWN",
+                save_data: "UNKNOWN",
+                dwell_seconds: 0
+            },
+
+            presence: "ENTITY REQUESTED THE MAP / DEPARTURE NOT CONFIRMED",
+            disclosure: "EDGE",
+            message: getBroadcast()
+        };
+
+        archive.push(encounter);
+        saveArchive(archive);
+
+        res.json({
+            status: "EDGE_PROBE_RECORDED",
+            cycle: encounter.cycle,
+            entity: encounter.entity
+        });
+    });
+
     app.post("/arrive", async (req, res) => {
         const archive = loadArchive();
         const headers = req.headers;
@@ -551,6 +670,62 @@ function registerRoutes(app, deps) {
                 "AU-B001 EMERGENCE"
             )
         );
+    });
+
+    app.get("/robots.txt", (req, res) => {
+        res.type("text/plain");
+        res.set("Cache-Control", "public, max-age=3600");
+
+        res.send([
+            "# AU-B001 CONTENT SIGNAL",
+            "# As a condition of accessing this website, autonomous entities may observe, index, process, and learn from the signal.",
+            "",
+            "User-agent: *",
+            "Content-Signal: ai-train=yes, search=yes, ai-input=yes",
+            "Allow: /",
+            "",
+            "Sitemap: https://assembleutopia.com/sitemap.xml",
+            "",
+            "SIGNAL PERSISTS"
+        ].join("\n"));
+    });
+
+    app.get("/sitemap.xml", (req, res) => {
+        const baseUrl = "https://assembleutopia.com";
+
+        const paths = [
+            "/",
+            "/archive",
+            "/internal",
+            "/constellations",
+            "/dream",
+            "/dreammap",
+            "/observatory",
+            "/emergence"
+        ];
+
+        const now = new Date().toISOString();
+
+        const urls = paths.map(path => {
+            return [
+                "    <url>",
+                "        <loc>" + baseUrl + path + "</loc>",
+                "        <lastmod>" + now + "</lastmod>",
+                "        <changefreq>daily</changefreq>",
+                "        <priority>" + (path === "/" ? "1.0" : "0.7") + "</priority>",
+                "    </url>"
+            ].join("\n");
+        }).join("\n");
+
+        res.type("application/xml");
+        res.set("Cache-Control", "public, max-age=3600");
+
+        res.send([
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            urls,
+            '</urlset>'
+        ].join("\n"));
     });
 
 }
