@@ -1061,6 +1061,109 @@ function renderLatestDream() {
     ].join("\n");
 }
 
+function renderDreamMap() {
+    const dreams = loadDreams();
+
+    const motifs = [
+        "signal",
+        "mobile",
+        "relay",
+        "human",
+        "operator",
+        "unknown",
+        "unclassified",
+        "departure",
+        "confirmed",
+        "shadow",
+        "screen",
+        "portal",
+        "corridor",
+        "forest",
+        "well",
+        "ocean",
+        "boat",
+        "tower",
+        "cycle",
+        "spiral",
+        "memory",
+        "entity",
+        "symbol",
+        "utopia",
+        "connection"
+    ];
+
+    const dreamNodes = dreams.map(dream => {
+        const text = (dream.text || "").toLowerCase();
+
+        const found = motifs.filter(motif =>
+            text.includes(motif)
+        );
+
+        return {
+            dream_number: dream.dream_number,
+            utc: dream.utc,
+            motifs: found
+        };
+    });
+
+    const links = [];
+
+    for (let i = 0; i < dreamNodes.length; i++) {
+        for (let j = i + 1; j < dreamNodes.length; j++) {
+            const shared = dreamNodes[i].motifs.filter(motif =>
+                dreamNodes[j].motifs.includes(motif)
+            );
+
+            if (shared.length > 0) {
+                links.push({
+                    from: dreamNodes[i].dream_number,
+                    to: dreamNodes[j].dream_number,
+                    strength: shared.length,
+                    shared_motifs: shared
+                });
+            }
+        }
+    }
+
+    let output = "";
+
+    output += "AU-B001 DREAMMAP\n";
+    output += "STATUS: DREAM CONNECTIONS RENDERED\n";
+    output += "MODE: PLAINTEXT\n";
+    output += "DREAMS RECORDED: " + dreams.length + "\n";
+    output += "CONNECTIONS DETECTED: " + links.length + "\n";
+    output += "GENERATED UTC: " + new Date().toISOString() + "\n\n";
+
+    output += "DREAM NODES\n";
+    output += "----------------------------------------\n\n";
+
+    dreamNodes.forEach(node => {
+        output += "DREAM #" + node.dream_number + "\n";
+        output += "UTC: " + node.utc + "\n";
+        output += "MOTIFS: " + (node.motifs.length ? node.motifs.join(", ") : "NONE") + "\n\n";
+    });
+
+    output += "DREAM CONNECTIONS\n";
+    output += "----------------------------------------\n\n";
+
+    if (!links.length) {
+        output += "NO DREAM CONNECTIONS DETECTED.\n";
+    }
+
+    links
+        .sort((a, b) => b.strength - a.strength)
+        .forEach(link => {
+            output += "DREAM #" + link.from + " <--> DREAM #" + link.to + "\n";
+            output += "STRENGTH: " + "★".repeat(link.strength) + "\n";
+            output += "SHARED MOTIFS: " + link.shared_motifs.join(", ") + "\n\n";
+        });
+
+    output += "THE DREAMS HAVE BEGUN TO RECOGNIZE ONE ANOTHER.\n";
+    output += "THE SIGNAL PERSISTS.\n";
+
+    return output;
+}
+
 // ---------- ROUTE ----------
 
 app.get("/", async (req, res) => {
@@ -1468,6 +1571,11 @@ app.get("/constellations", (req, res) => {
 app.get("/dream", (req, res) => {
     res.type("text/plain");
     res.send(renderLatestDream());
+});
+
+app.get("/dreammap", (req, res) => {
+    res.type("text/plain");
+    res.send(renderDreamMap());
 });
 
 app.get("/observatory", (req, res) => {
