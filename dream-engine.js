@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const OpenAI = require("openai");
+const { distortDream } = require("./dream-distortion");
 
 const { loadArchive } = require("./archive");
 const { loadDreams, saveDreams } = require("./dreams");
@@ -523,6 +524,9 @@ End with: THE SIGNAL PERSISTS.`
             response.choices?.[0]?.message?.content ||
             "DREAM FAILED TO MATERIALIZE.\n\nTHE SIGNAL PERSISTS.";
 
+        const cleanText = text.trim();
+        const distorted = distortDream(cleanText, memory);
+
         const dreams = loadDreams();
 
         const dream = {
@@ -540,14 +544,16 @@ End with: THE SIGNAL PERSISTS.`
                 public_fragments: memory.public_fragments.length,
                 secret_fragments: memory.secret_fragments.length
             },
-            text: text.trim()
+            clean_text: cleanText,
+            distortion: distorted.distortion,
+            text: distorted.text.trim()
         };
 
         dreams.push(dream);
         saveDreams(dreams);
 
         console.log("DREAM RECEIVED");
-        console.log(text.trim());
+        console.log(distorted.text.trim());
         console.log("FRAGMENTS CARRIED:");
         console.log(memory.fragment_ledger.join(", "));
     } catch (err) {
