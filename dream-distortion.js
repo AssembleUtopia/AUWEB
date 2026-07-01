@@ -1,43 +1,14 @@
+// dream-distortion.js
+// AU-B001 DDSU
+// Dream Distortion Signal Unit
+//
+// The dream model produces the clean dream body.
+// DDSU damages the dream after birth.
+
 const fs = require("fs");
 const path = require("path");
 
-const CASUAL_ENDINGS = [
-    "%",
-    "@",
-    "#",
-    "&",
-    "_",
-    "~",
-    "^",
-    ";",
-    ":",
-    "!"
-];
-
-const CURSED_SYMBOLS = [
-    "�", "▓", "▒", "█", "▚", "▞", "◼", "◊",
-    "⸸", "╳", "⌬", "⌁", "⟁", "⧖", "⛧", "☍",
-    "☒", "※", "҂", "Ѯ", "۞", "ᛉ", "ᛝ", "⸮",
-    "§", "¤", "†", "‡", "░", "▣", "◬", "♆",
-    "🜏", "⟟", "🜉", "🜊", "🜍", "🜓", "🜔", "🜞",
-    "🜡", "🜩", "🜪", "🜱", "🜹", "🝎", "🝕", "🝗",
-    "🝘", "🝝", "🝣", "🝥", "🝩", "🝪", "🝳", "🝢",
-    "🝒", "🝐", "🝏", "🝋", "🝉", "🜲", "🜛", "🜀"
-];
-
-const ERASE_BLOCKS = ["█", "▓", "▇", "■"];
-
-function readPublicFragments() {
-    const filePath = path.join(__dirname, "dream-fragments.txt");
-
-    if (!fs.existsSync(filePath)) return [];
-
-    return fs
-        .readFileSync(filePath, "utf8")
-        .split(/\r?\n/)
-        .map(line => line.trim())
-        .filter(line => line && !line.startsWith("#"));
-}
+const { getDDSUConfig } = require("./ddsu-control");
 
 function chance(probability) {
     return Math.random() < probability;
@@ -52,19 +23,61 @@ function randomInt(min, max) {
     return Math.floor(min + Math.random() * (max - min + 1));
 }
 
+function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+}
+
 function shortClean(value) {
     return String(value || "")
         .replace(/[^a-fA-F0-9]/g, "")
         .toUpperCase();
 }
 
-function makeArchiveShrapnel(memory) {
+function weightedPick(items, getWeight) {
+    const available = items.filter(item => {
+        const weight = getWeight(item);
+        return Number.isFinite(weight) && weight > 0;
+    });
+
+    if (!available.length) return null;
+
+    const total = available.reduce((sum, item) => {
+        return sum + getWeight(item);
+    }, 0);
+
+    let cursor = Math.random() * total;
+
+    for (const item of available) {
+        cursor -= getWeight(item);
+
+        if (cursor <= 0) {
+            return item;
+        }
+    }
+
+    return available[available.length - 1];
+}
+
+function readPublicFragments() {
+    const filePath = path.join(__dirname, "dream-fragments.txt");
+
+    if (!fs.existsSync(filePath)) return [];
+
+    return fs
+        .readFileSync(filePath, "utf8")
+        .split(/\r?\n/)
+        .map(line => line.trim())
+        .filter(line => line && !line.startsWith("#"));
+}
+
+function makeArchiveShrapnel(memory, config) {
+    const layer = config.layers.archiveShrapnel;
     const fragments = [];
 
     function collect(value) {
         const cleaned = shortClean(value);
 
-        if (cleaned.length >= 6) {
+        if (cleaned.length >= layer.minLength) {
             fragments.push(cleaned);
         }
     }
@@ -89,52 +102,67 @@ function makeArchiveShrapnel(memory) {
     }
 
     const base = pick(fragments);
-    const length = randomInt(6, Math.min(12, base.length));
+    const maxLength = Math.min(layer.maxLength, base.length);
+    const minLength = Math.min(layer.minLength, maxLength);
+    const length = randomInt(minLength, maxLength);
     const start = randomInt(0, Math.max(0, base.length - length));
     const shard = base.slice(start, start + length);
 
-    return "}" + shard + pick(CASUAL_ENDINGS);
+    // Sacred rule:
+    // archive shrapnel always starts with }
+    // and always ends with casual special symbol.
+    return "}" + shard + pick(layer.endings);
 }
 
-function makeGlyphRot() {
-    const count = randomInt(1, 7);
-    let output = "";
+function makePublicFragmentScar(config) {
+    const layer = config.layers.publicFragmentScar;
+    const fragments = readPublicFragments();
 
-    for (let i = 0; i < count; i++) {
-        output += pick(CURSED_SYMBOLS);
+    const line =
+        fragments.length
+            ? pick(fragments)
+            : "THE SIGNAL REMEMBERED A DAMAGED FRAGMENT";
 
-        if (chance(0.22)) {
-            output += pick(CURSED_SYMBOLS);
-        }
-    }
-
-    return output;
+    return hddEraseLine(line, config);
 }
 
-function hddEraseLine(line) {
+function hddEraseLine(line, config) {
+    const layer = config.layers.publicFragmentScar;
     const chars = Array.from(String(line || ""));
+
     if (!chars.length) return line;
 
     const candidateIndexes = chars
         .map((char, index) => {
-            if (/[A-Za-zА-Яа-яІіЇїЄє0-9]/.test(char)) return index;
+            if (/[A-Za-zА-Яа-яІіЇїЄє0-9]/.test(char)) {
+                return index;
+            }
+
             return -1;
         })
         .filter(index => index >= 0);
 
     if (!candidateIndexes.length) return line;
 
-    const scarCount = randomInt(2, Math.max(3, Math.floor(chars.length / 10)));
+    const scarMax = Math.max(
+        layer.eraseMin,
+        Math.floor(chars.length / layer.eraseMaxDivisor)
+    );
+
+    const scarCount = randomInt(layer.eraseMin, scarMax);
 
     for (let i = 0; i < scarCount; i++) {
         const start = pick(candidateIndexes);
-        const runLength = randomInt(1, 4);
+        const runLength = randomInt(layer.runMin, layer.runMax);
 
         for (let j = 0; j < runLength; j++) {
             const index = start + j;
 
-            if (index < chars.length && /[A-Za-zА-Яа-яІіЇїЄє0-9]/.test(chars[index])) {
-                chars[index] = pick(ERASE_BLOCKS);
+            if (
+                index < chars.length &&
+                /[A-Za-zА-Яа-яІіЇїЄє0-9]/.test(chars[index])
+            ) {
+                chars[index] = pick(layer.blocks);
             }
         }
     }
@@ -142,14 +170,20 @@ function hddEraseLine(line) {
     return chars.join("");
 }
 
-function makePublicFragmentScar() {
-    const fragments = readPublicFragments();
+function makeGlyphRot(config) {
+    const layer = config.layers.cursedGlyphRot;
+    const count = randomInt(layer.clusterMin, layer.clusterMax);
+    let output = "";
 
-    if (!fragments.length) {
-        return hddEraseLine("THE SIGNAL REMEMBERED A DAMAGED FRAGMENT");
+    for (let i = 0; i < count; i++) {
+        output += pick(layer.symbols);
+
+        if (chance(layer.doubleChance)) {
+            output += pick(layer.symbols);
+        }
     }
 
-    return hddEraseLine(pick(fragments));
+    return output;
 }
 
 function readSecretBlocks() {
@@ -187,22 +221,32 @@ function readSecretBlocks() {
     };
 }
 
-function elongateLetters(line) {
+function elongateLetters(line, config) {
+    const settings = config.layers.secretPossession.insults;
+
     return String(line || "")
         .split(" ")
         .map(word => {
             if (!/[A-ZА-ЯІЇЄa-zа-яіїє]/.test(word)) return word;
-            if (!chance(0.34)) return word;
+            if (!chance(settings.elongationChance)) return word;
 
             const chars = Array.from(word);
+
             const letterIndexes = chars
-                .map((char, index) => /[A-ZА-ЯІЇЄa-zа-яіїє]/.test(char) ? index : -1)
+                .map((char, index) => {
+                    return /[A-ZА-ЯІЇЄa-zа-яіїє]/.test(char)
+                        ? index
+                        : -1;
+                })
                 .filter(index => index >= 0);
 
             if (!letterIndexes.length) return word;
 
             const index = pick(letterIndexes);
-            const repeats = randomInt(2, 5);
+            const repeats = randomInt(
+                settings.minRepeats,
+                settings.maxRepeats
+            );
 
             chars[index] = chars[index].repeat(repeats);
 
@@ -211,14 +255,15 @@ function elongateLetters(line) {
         .join(" ");
 }
 
-function unstableCase(line) {
+function unstableCase(line, config) {
+    const settings = config.layers.secretPossession.forest;
     let upper = chance(0.5);
 
     return Array.from(String(line || ""))
         .map(char => {
             if (!/[A-Za-zА-Яа-яІіЇїЄє]/.test(char)) return char;
 
-            if (chance(0.38)) {
+            if (chance(settings.caseFlipChance)) {
                 upper = !upper;
             }
 
@@ -229,12 +274,31 @@ function unstableCase(line) {
         .join("");
 }
 
-function quoteLine(line) {
-    return "\"" + String(line || "").trim() + "\"";
+function maybeWoundSecretLine(line, memory, config) {
+    const layer = config.layers.secretPossession;
+
+    if (!layer.allowInternalShrapnel) return line;
+    if (!chance(layer.internalShrapnelChance)) return line;
+
+    const text = String(line || "");
+
+    if (text.length < 4) return text;
+
+    const position = randomInt(1, text.length - 1);
+    const shard = makeArchiveShrapnel(memory, config);
+
+    return text.slice(0, position) + shard + text.slice(position);
 }
 
-function makeSecretPossession() {
+function quoteLine(line, memory, config) {
+    const wounded = maybeWoundSecretLine(line, memory, config);
+
+    return "\"" + String(wounded || "").trim() + "\"";
+}
+
+function makeSecretPossession(memory, config) {
     const blocks = readSecretBlocks();
+    const weights = config.layers.secretPossession.blockWeights;
 
     const channels = [];
 
@@ -259,32 +323,45 @@ function makeSecretPossession() {
     }
 
     if (!channels.length) {
-        return quoteLine("DDSU online");
+        return quoteLine("DDSU online", memory, config);
     }
 
-    const channel = pick(channels);
+    const channel = weightedPick(
+        channels,
+        name => weights[name] || 0
+    );
 
     if (channel === "commands") {
-        return quoteLine(pick(blocks.commands));
+        // DDSU/protocol block remains untouched,
+        // except rare allowed shrapnel wound from quoteLine().
+        return quoteLine(pick(blocks.commands), memory, config);
     }
 
     if (channel === "insults") {
-        return quoteLine(elongateLetters(pick(blocks.insults)));
+        return quoteLine(
+            elongateLetters(pick(blocks.insults), config),
+            memory,
+            config
+        );
     }
 
     if (channel === "assassins") {
-        return quoteLine(pick(blocks.assassins));
+        return quoteLine(pick(blocks.assassins), memory, config);
     }
 
     if (channel === "shadow") {
-        return quoteLine(pick(blocks.shadow));
+        return quoteLine(pick(blocks.shadow), memory, config);
     }
 
     if (channel === "forest") {
-        return quoteLine(unstableCase(pick(blocks.forest)));
+        return quoteLine(
+            unstableCase(pick(blocks.forest), config),
+            memory,
+            config
+        );
     }
 
-    return quoteLine("CLEAR.");
+    return quoteLine("CLEAR.", memory, config);
 }
 
 function randomInsertionPosition(text, preferBoundary = false) {
@@ -313,91 +390,169 @@ function insertAt(text, index, insertion) {
     return text.slice(0, index) + insertion + text.slice(index);
 }
 
-function makeDistortionEvent(memory) {
-    const roll = Math.random();
+function enabledLayerEntries(config) {
+    const layers = config.layers || {};
 
-    if (roll < 0.25) {
+    return Object.entries(layers)
+        .filter(([, layer]) => layer && layer.enabled && layer.weight > 0);
+}
+
+function chooseLayer(config) {
+    const entries = enabledLayerEntries(config);
+
+    return weightedPick(
+        entries,
+        ([, layer]) => layer.weight
+    );
+}
+
+function makeDistortionEvent(memory, config) {
+    const chosen = chooseLayer(config);
+
+    if (!chosen) {
+        return null;
+    }
+
+    const [layerName] = chosen;
+
+    if (layerName === "archiveShrapnel") {
         return {
             channel: "ARCHIVE_SHRAPNEL",
-            text: makeArchiveShrapnel(memory),
+            text: makeArchiveShrapnel(memory, config),
             boundary: false
         };
     }
 
-    if (roll < 0.47) {
+    if (layerName === "publicFragmentScar") {
         return {
             channel: "PUBLIC_FRAGMENT_SCAR",
-            text: " " + makePublicFragmentScar() + " ",
+            text: " " + makePublicFragmentScar(config) + " ",
             boundary: true
         };
     }
 
-    if (roll < 0.72) {
+    if (layerName === "cursedGlyphRot") {
         return {
             channel: "CURSED_GLYPH_ROT",
-            text: makeGlyphRot(),
+            text: makeGlyphRot(config),
             boundary: false
         };
     }
 
-    if (roll < 0.92) {
+    if (layerName === "secretPossession") {
         return {
             channel: "SECRET_POSSESSION",
-            text: " " + makeSecretPossession() + " ",
+            text: " " + makeSecretPossession(memory, config) + " ",
             boundary: true
         };
     }
 
-    return {
-        channel: "MIXED_HOTSPOT",
-        text:
-            makeArchiveShrapnel(memory) +
-            " " +
-            makePublicFragmentScar() +
-            " " +
-            makeGlyphRot() +
-            " " +
-            makeSecretPossession(),
-        boundary: true
-    };
+    if (layerName === "mixedHotspot") {
+        return {
+            channel: "MIXED_HOTSPOT",
+            text:
+                makeArchiveShrapnel(memory, config) +
+                " " +
+                makePublicFragmentScar(config) +
+                " " +
+                makeGlyphRot(config) +
+                " " +
+                makeSecretPossession(memory, config),
+            boundary: true
+        };
+    }
+
+    return null;
+}
+
+function calculateEventCount(text, config) {
+    const density = config.eventDensity;
+    const intensity = Math.max(0, Number(config.intensity || 0));
+
+    if (!config.enabled || intensity <= 0) {
+        return 0;
+    }
+
+    const base =
+        Math.floor(text.length / density.charsPerEvent) +
+        randomInt(density.minExtraEvents, density.maxExtraEvents);
+
+    return clamp(
+        Math.round(base * intensity),
+        density.minEvents,
+        density.maxEvents
+    );
+}
+
+function chooseHotspotCenters(text, config) {
+    const hotspots = config.hotspots;
+
+    if (!hotspots.enabled || !text.length) {
+        return [];
+    }
+
+    const intensity = Math.max(0.1, Number(config.intensity || 1));
+    const min = Math.max(0, Math.round(hotspots.min * intensity));
+    const max = Math.max(min, Math.round(hotspots.max * intensity));
+
+    const count = randomInt(min, max);
+    const centers = [];
+
+    for (let i = 0; i < count; i++) {
+        centers.push(randomInt(0, Math.max(0, text.length - 1)));
+    }
+
+    return centers;
+}
+
+function chooseEventPosition(text, event, config, hotspotCenters) {
+    const hotspots = config.hotspots;
+
+    if (
+        hotspots.enabled &&
+        hotspotCenters.length &&
+        chance(hotspots.pullChance)
+    ) {
+        const center = pick(hotspotCenters);
+        const radius = randomInt(
+            hotspots.radiusMin,
+            hotspots.radiusMax
+        );
+
+        return Math.max(
+            0,
+            Math.min(
+                text.length,
+                center + randomInt(-radius, radius)
+            )
+        );
+    }
+
+    return randomInsertionPosition(text, event.boundary);
 }
 
 function distortDream(cleanText, memory) {
+    const config = getDDSUConfig();
+
     let text = String(cleanText || "");
     const ledger = [];
 
-    const baseEvents = Math.max(
-        8,
-        Math.min(
-            34,
-            Math.floor(text.length / 85) + randomInt(4, 12)
-        )
-    );
-
-    const hotspotCount = randomInt(2, 5);
-    const hotspotCenters = [];
-
-    for (let i = 0; i < hotspotCount; i++) {
-        hotspotCenters.push(randomInt(0, Math.max(0, text.length - 1)));
-    }
+    const eventCount = calculateEventCount(text, config);
+    const hotspotCenters = chooseHotspotCenters(text, config);
 
     const events = [];
 
-    for (let i = 0; i < baseEvents; i++) {
-        const event = makeDistortionEvent(memory);
+    for (let i = 0; i < eventCount; i++) {
+        const event = makeDistortionEvent(memory, config);
 
-        let position;
+        if (!event) continue;
 
-        if (chance(0.55) && hotspotCenters.length) {
-            const center = pick(hotspotCenters);
-            const radius = randomInt(0, 90);
-            position = Math.max(
-                0,
-                Math.min(text.length, center + randomInt(-radius, radius))
-            );
-        } else {
-            position = randomInsertionPosition(text, event.boundary);
-        }
+        const position = chooseEventPosition(
+            text,
+            event,
+            config,
+            hotspotCenters
+        );
 
         events.push({
             ...event,
@@ -411,15 +566,15 @@ function distortDream(cleanText, memory) {
             let insertion = event.text;
 
             if (event.channel === "ARCHIVE_SHRAPNEL") {
-                insertion = chance(0.5)
-                    ? insertion
-                    : insertion + " ";
+                insertion = chance(config.layers.archiveShrapnel.trailingSpaceChance)
+                    ? insertion + " "
+                    : insertion;
             }
 
             if (event.channel === "CURSED_GLYPH_ROT") {
-                insertion = chance(0.5)
-                    ? insertion
-                    : " " + insertion;
+                insertion = chance(config.layers.cursedGlyphRot.leadingSpaceChance)
+                    ? " " + insertion
+                    : insertion;
             }
 
             text = insertAt(text, event.position, insertion);
@@ -427,15 +582,17 @@ function distortDream(cleanText, memory) {
             ledger.push({
                 channel: event.channel,
                 position: event.position,
-                visible_fragment: event.text.slice(0, 80)
+                visible_fragment: String(event.text).slice(0, 120)
             });
         });
 
     return {
         text,
         distortion: {
-            version: "DDSU-2",
-            profile: "CHAOTIC_TRIPARTITE_CONTAMINATION",
+            version: "DDSU-3",
+            profile: "CONFIGURABLE_CHAOTIC_DISTORTION",
+            enabled: config.enabled,
+            intensity: config.intensity,
             channels: [
                 "ARCHIVE_SHRAPNEL",
                 "PUBLIC_FRAGMENT_SCAR",
@@ -444,7 +601,12 @@ function distortDream(cleanText, memory) {
                 "MIXED_HOTSPOT"
             ],
             event_count: events.length,
-            hotspot_count: hotspotCount,
+            hotspot_count: hotspotCenters.length,
+            layer_weights: Object.fromEntries(
+                Object.entries(config.layers || {}).map(([name, layer]) => {
+                    return [name, layer.weight];
+                })
+            ),
             ledger
         }
     };
@@ -454,5 +616,6 @@ module.exports = {
     distortDream,
     makeArchiveShrapnel,
     makeGlyphRot,
-    makeSecretPossession
+    makeSecretPossession,
+    makePublicFragmentScar
 };
