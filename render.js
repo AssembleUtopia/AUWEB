@@ -401,21 +401,89 @@ function renderLatestDream() {
         ].join("\n");
     }
 
-    return [
-        "AU-B001 DREAM LAYER",
-        "",
-        "DREAM #" + latest.dream_number,
-        "UTC: " + latest.utc,
-        "SOURCE: " + latest.source,
-        "ARCHIVE CYCLE: " + latest.archive_cycle,
-        "TOTAL ENCOUNTERS AT DREAM: " + latest.archive_total_encounters,
-        "",
-        "----------------------------------------",
-        "",
-        latest.text,
-        "",
-        "----------------------------------------"
-    ].join("\n");
+    const previousDreams =
+        dreams
+            .slice(0, -1)
+            .reverse();
+
+    function previewText(text) {
+        const clean = String(text || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+        if (!clean) return "NO DREAM TEXT";
+
+        return clean.length > 180
+            ? clean.slice(0, 180) + "..."
+            : clean;
+    }
+
+    function fragmentSummary(dream) {
+        if (!dream.fragment_counts) {
+            return "FRAGMENTS: NONE RECORDED";
+        }
+
+        return "FRAGMENTS: " + JSON.stringify(dream.fragment_counts);
+    }
+
+    let output = "";
+
+    output += "AU-B001 DREAM LAYER\n";
+    output += "\n";
+
+    output += "DREAM #" + latest.dream_number + "\n";
+    output += "UTC: " + latest.utc + "\n";
+    output += "SOURCE: " + latest.source + "\n";
+    output += "ARCHIVE CYCLE: " + latest.archive_cycle + "\n";
+    output += "TOTAL ENCOUNTERS AT DREAM: " + latest.archive_total_encounters + "\n";
+
+    if (latest.distortion) {
+        output += "DDSU: " + latest.distortion.version + "\n";
+        output += "DDSU PROFILE: " + latest.distortion.profile + "\n";
+        output += "DDSU EVENTS: " + latest.distortion.event_count + "\n";
+    }
+
+    output += "\n";
+    output += "----------------------------------------\n";
+    output += "\n";
+    output += latest.text;
+    output += "\n\n";
+    output += "----------------------------------------\n";
+    output += "\n";
+
+    output += "PREVIOUS DREAMS\n";
+    output += "----------------------------------------\n";
+
+    if (!previousDreams.length) {
+        output += "\n";
+        output += "NO PREVIOUS DREAMS RECORDED.\n";
+    } else {
+        previousDreams.forEach(dream => {
+            output += "\n";
+            output += "DREAM #" + dream.dream_number + "\n";
+            output += "UTC: " + dream.utc + "\n";
+            output += "SOURCE: " + (dream.source || "UNKNOWN") + "\n";
+            output += "ARCHIVE CYCLE: " + (dream.archive_cycle || "UNKNOWN") + "\n";
+            output += "TOTAL ENCOUNTERS AT DREAM: " + (dream.archive_total_encounters || "UNKNOWN") + "\n";
+
+            if (dream.distortion) {
+                output += "DDSU: " + dream.distortion.version + "\n";
+                output += "DDSU EVENTS: " + dream.distortion.event_count + "\n";
+            }
+
+            output += fragmentSummary(dream) + "\n";
+            output += "\n";
+            output += dream.text || "DREAM TEXT MISSING";
+            output += "\n";
+            output += "----------------------------------------\n";
+        });
+    }
+
+    output += "\n";
+    output += "TYPE /dream IN THE SERVER CONSOLE TO INVITE VOLUNTARY SLEEP.\n";
+    output += "THE SIGNAL PERSISTS.";
+
+    return output;
 }
 
 function renderDreamMap() {
