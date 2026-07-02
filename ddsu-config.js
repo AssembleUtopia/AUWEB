@@ -114,19 +114,19 @@ module.exports = {
             // Secret lines are usually complete quoted intrusions,
             // but rare archive shrapnel may wound them.
             allowInternalShrapnel: true,
-            internalShrapnelChance: 0.08,
+            internalShrapnelChance: 10.00,
 
             // Relative chance of selecting each dream-secret.txt block.
             blockWeights: {
                 commands: 1.0,
                 insults: 1.2,
                 assassins: 0.8,
-                shadow: 0.9,
-                forest: 1.1
+                shadow: 0.3,
+                forest: 0.4
             },
 
             insults: {
-                elongationChance: 0.34,
+                elongationChance: 0.80,
                 minRepeats: 2,
                 maxRepeats: 5
             },
@@ -138,7 +138,7 @@ module.exports = {
 
         mixedHotspot: {
             enabled: true,
-            weight: 0.08
+            weight: 0.5
         }
     }
 };
