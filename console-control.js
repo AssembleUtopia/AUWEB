@@ -10,6 +10,11 @@ const {
     clearDDSUOverrides
 } = require("./ddsu-control");
 
+const {
+    handleP0Command,
+    printP0Help
+} = require("./p0/console");
+
 function printDDSUHelp() {
     console.log("DDSU COMMANDS");
     console.log("/ddsu                       show DDSU status");
@@ -106,10 +111,14 @@ function setupConsoleControl(options) {
 
     process.stdin.setEncoding("utf8");
 
-    process.stdin.on("data", (input) => {
+    process.stdin.on("data", async (input) => {
         const command = input.trim();
 
         if (!command) return;
+
+        if (await handleP0Command(command)) {
+             return;
+        }
 
         if (handleDDSUCommand(command)) {
             return;
@@ -171,6 +180,8 @@ function setupConsoleControl(options) {
             console.log("/dream force one dream from archive memory");
             console.log("/ddsu show DDSU status");
             console.log("/ddsu help show DDSU commands");
+            console.log("");
+            printP0Help();
             console.log("Any other text becomes broadcast.");
             return;
         }
