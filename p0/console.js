@@ -14,9 +14,16 @@ const {
 } = require("./constitution");
 
 const {
+    readRecords,
     hasEvent,
     appendEvent
 } = require("./canonical-audit");
+
+const { loadArchive } = require("../archive");
+
+const {
+    buildEncounterObservation
+} = require("./encounter-observation");
 
 function printP0Help() {
     console.log("P0 COMMANDS");
@@ -25,6 +32,8 @@ function printP0Help() {
     console.log("/p0 help     show P0 commands");
     console.log("/p0 signal <text>  transmit an operator signal");
     console.log("/p0 ack <proposal-id>  acknowledge canonical receipt");
+    console.log("/p0 encounter <cycle>  transmit one archived encounter");
+    console.log("/p0 show <proposal-id>  inspect canonical proposal");
 }
 
 function printP0Status() {
@@ -159,6 +168,115 @@ async function acknowledgeProposal(proposalId) {
     console.log("Newly acknowledged:", response.acknowledged);
 }
 
+async function sendEncounter(cycleValue) {
+    const cycle = Number(cycleValue);
+
+    if (!Number.isInteger(cycle) || cycle < 1) {
+        throw new Error("A valid encounter cycle is required");
+    }
+
+    const encounter = loadArchive().find(
+        (item) => item.cycle === cycle
+    );
+
+    if (!encounter) {
+        throw new Error(`Encounter #${cycle} was not found`);
+    }
+
+    const observation = buildEncounterObservation(encounter);
+
+    const alreadySent = readRecords().some(
+        (record) =>
+            record.event_type === "observation_created" &&
+            record.payload?.external_id === observation.external_id
+    );
+
+    if (alreadySent) {
+        throw new Error(
+            `Encounter #${cycle} event was already transmitted`
+        );
+    }
+
+    appendEvent({
+        eventType: "observation_created",
+        actor: "p1_human",
+        entityId: observation.observation_id,
+        payload: observation
+    });
+
+    try {
+        const response = await ingestObservation(observation);
+
+        appendEvent({
+            eventType: "observation_delivered",
+            actor: "au_b001",
+            entityId: observation.observation_id,
+            payload: response
+        });
+
+        console.log(`P0 encounter #${cycle} accepted.`);
+        console.log("Observation ID:", observation.observation_id);
+        console.log("Event type:", observation.event_type);
+        console.log("Processing status:", response.status || "pending");
+    } catch (error) {
+        appendEvent({
+            eventType: "observation_delivery_failed",
+            actor: "au_b001",
+            entityId: observation.observation_id,
+            payload: {
+                message: error.message,
+                status: error.status || null
+            }
+        });
+
+        throw error;
+    }
+}
+
+function showProposal(proposalId) {
+    if (!proposalId) {
+        throw new Error("Proposal ID is required");
+    }
+
+    const record = readRecords().find(
+        (item) =>
+            item.event_type === "proposal_received" &&
+            item.entity_id === proposalId
+    );
+
+    if (!record) {
+        throw new Error(
+            "Proposal was not found in the canonical audit"
+        );
+    }
+
+    const proposal = record.payload;
+
+    console.log("P0 PROPOSAL");
+    console.log("ID:", proposal.proposal_id);
+    console.log("Action:", proposal.action);
+    console.log(
+    "Decision:",
+    proposal.decision_type ||
+        `${proposal.action} (inferred from legacy payload)`
+);
+    console.log("Mode:", proposal.mode_at_creation);
+    console.log("Risk:", proposal.risk_classification);
+    console.log("Confidence:", proposal.confidence);
+    console.log("Relevance:", proposal.relevance_score);
+    console.log("Sources:", (proposal.source_ids || []).join(", "));
+    console.log("Reason:", proposal.reason);
+
+    if (proposal.text) {
+        console.log("Text:", proposal.text);
+    }
+
+    console.log(
+        "Acknowledged:",
+        hasEvent("proposal_acknowledged", proposalId)
+    );
+}
+
 async function handleP0Command(command) {
     if (command === "/p0" || command === "/p0 status") {
         printP0Status();
@@ -197,6 +315,30 @@ async function handleP0Command(command) {
 
     try {
         await acknowledgeProposal(proposalId);
+    } catch (error) {
+        console.log("P0 ERROR:", error.message);
+    }
+
+    return true;
+    }
+
+    if (command.startsWith("/p0 encounter ")) {
+    const cycle = command.slice("/p0 encounter ".length).trim();
+
+    try {
+        await sendEncounter(cycle);
+    } catch (error) {
+        console.log("P0 ERROR:", error.message);
+    }
+
+    return true;
+    }
+
+    if (command.startsWith("/p0 show ")) {
+    const proposalId = command.slice("/p0 show ".length).trim();
+
+    try {
+        showProposal(proposalId);
     } catch (error) {
         console.log("P0 ERROR:", error.message);
     }
