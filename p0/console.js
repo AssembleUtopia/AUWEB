@@ -255,11 +255,7 @@ function showProposal(proposalId) {
     console.log("P0 PROPOSAL");
     console.log("ID:", proposal.proposal_id);
     console.log("Action:", proposal.action);
-    console.log(
-    "Decision:",
-    proposal.decision_type ||
-        `${proposal.action} (inferred from legacy payload)`
-);
+    console.log("Decision:", proposal.decision_type || `${proposal.action} (inferred from legacy payload)`);
     console.log("Mode:", proposal.mode_at_creation);
     console.log("Risk:", proposal.risk_classification);
     console.log("Confidence:", proposal.confidence);
