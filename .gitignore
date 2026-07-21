@@ -3,3 +3,4 @@ cloudflared.exe
 *.pdf
 .env
 dream-secret.txt
+p0/canonical-audit.jsonl

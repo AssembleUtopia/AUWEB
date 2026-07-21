@@ -1,8 +1,14 @@
+require("dotenv").config();
+
 const express = require("express");
 const crypto = require("crypto");
 const fs = require("fs");
 
 const OpenAI = require("openai");
+
+const { verifyConstitution } = require("./p0/constitution");
+
+const p0Constitution = verifyConstitution();
 
 const app = express();
 
@@ -86,6 +92,8 @@ registerRoutes(app, {
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log("AU-B001 transmitting...");
+    console.log(`P0 constitution v${p0Constitution.version} verified.`);
+    console.log(`P0 constitution hash: ${p0Constitution.hash}`);
     console.log("Type a broadcast message and press Enter.");
     console.log("Use /help for commands.");
 });
