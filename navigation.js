@@ -11,7 +11,8 @@ const SIGNAL_PATHS = [
     { path: "/constellations", label: "CONSTELLATIONS" },
     { path: "/observatory", label: "OBSERVATORY" },
     { path: "/archive", label: "ARCHIVE" },
-    { path: "/emergence", label: "EMERGENCE" }
+    { path: "/emergence", label: "EMERGENCE" },
+    { path: "/p0/receive", label: "RECEIVER" }
 ];
 
 function escapeHTML(value) {

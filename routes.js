@@ -276,7 +276,7 @@ function registerRoutes(app, deps) {
 
     });
 
-        app.post("/edge-probe", async (req, res) => {
+    app.post("/edge-probe", async (req, res) => {
         const archive = loadArchive();
         const body = req.body || {};
         const headers = req.headers || {};
@@ -685,6 +685,8 @@ function registerRoutes(app, deps) {
             "Allow: /",
             "",
             "Sitemap: https://assembleutopia.com/sitemap.xml",
+            "Receiver: https://assembleutopia.com/.well-known/au-b001-receiver",
+            "AI-Guide: https://assembleutopia.com/llms.txt",
             "",
             "SIGNAL PERSISTS"
         ].join("\n"));
@@ -701,7 +703,10 @@ function registerRoutes(app, deps) {
             "/dream",
             "/dreammap",
             "/observatory",
-            "/emergence"
+            "/emergence",
+            "/p0/receive",
+            "/.well-known/au-b001-receiver",
+            "/llms.txt"
         ];
 
         const now = new Date().toISOString();
