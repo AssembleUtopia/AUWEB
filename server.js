@@ -8,6 +8,9 @@ const OpenAI = require("openai");
 
 const { verifyConstitution } = require("./p0/constitution");
 
+const { registerReceiverIngress } =
+    require("./p0/receiver-ingress");
+
 const p0Constitution = verifyConstitution();
 
 const app = express();
@@ -52,7 +55,10 @@ const {
 
 let currentBroadcast = "SIGNAL PERSISTS";
 
+registerReceiverIngress(app);
 app.use(express.json({ limit: "64kb" }));
+
+
 
 setupConsoleControl({
     getBroadcast: () => currentBroadcast,
